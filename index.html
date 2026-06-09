@@ -308,30 +308,45 @@
     box-shadow: var(--shadow-md);
     border-color: var(--blue-200);
   }
-  .deal-card-header {
+  .deal-card-img {
+    position: relative;
+    height: 175px;
+    overflow: hidden;
     background: var(--gray-100);
-    padding: 20px;
+  }
+  .deal-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .deal-card:hover .deal-card-img img { transform: scale(1.05); }
+  .deal-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.08) 50%, transparent 100%);
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: flex-start;
+    padding: 10px 12px 12px;
   }
-  .deal-badges { display: flex; gap: 6px; flex-wrap: wrap; }
-  .badge {
-    font-size: 11px;
-    font-weight: 700;
-    padding: 3px 10px;
-    border-radius: 100px;
-    letter-spacing: 0.3px;
+  .overlay-top-right { display: flex; justify-content: flex-end; }
+  .score-chip {
+    background: white;
+    border-radius: var(--radius-sm);
+    padding: 4px 10px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
   }
+  .score-chip .score-val { font-size: 18px; font-weight: 800; color: var(--blue-600); letter-spacing: -0.5px; line-height: 1.2; }
+  .score-chip .score-label { font-size: 9px; color: var(--gray-400); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .deal-badges { display: flex; gap: 5px; flex-wrap: wrap; }
+  .badge { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 100px; letter-spacing: 0.3px; }
   .badge-hot { background: var(--red-100); color: var(--red-700); }
   .badge-ev { background: var(--green-100); color: var(--green-700); }
   .badge-new { background: var(--blue-50); color: var(--blue-600); }
   .badge-luxury { background: var(--amber-100); color: var(--amber-700); }
-  .deal-score {
-    text-align: right;
-  }
-  .score-val { font-size: 22px; font-weight: 800; color: var(--blue-600); letter-spacing: -1px; }
-  .score-label { font-size: 10px; color: var(--gray-400); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
   .deal-card-body { padding: 18px 20px; }
   .deal-make { font-size: 11px; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px; }
   .deal-model { font-size: 19px; font-weight: 800; color: var(--gray-800); letter-spacing: -0.5px; margin-bottom: 4px; }
@@ -772,15 +787,15 @@
 
 <script>
 const DEALS = [
-  { make:'BMW', model:'X5 xDrive40i', trim:'Premium Package', payment:549, term:36, miles:'10,000', due:3500, msrp:72000, discount:9, score:87, badges:['Hot','Luxury'], region:'Northeast', ev:false },
-  { make:'Tesla', model:'Model Y', trim:'Long Range AWD', payment:389, term:36, miles:'10,000', due:2500, msrp:49000, discount:6, score:91, badges:['Hot','EV'], region:'Nationwide', ev:true },
-  { make:'Mercedes-Benz', model:'GLC 300', trim:'4MATIC AMG Line', payment:619, term:36, miles:'10,000', due:4000, msrp:68000, discount:11, score:84, badges:['Luxury'], region:'West Coast', ev:false },
-  { make:'Hyundai', model:'Ioniq 6', trim:'SE Standard Range', payment:239, term:36, miles:'12,000', due:1500, msrp:38000, discount:8, score:95, badges:['Hot','EV'], region:'Nationwide', ev:true },
-  { make:'Volvo', model:'XC60 Recharge', trim:'T8 Plus Dark', payment:499, term:36, miles:'10,000', due:3000, msrp:64000, discount:13, score:88, badges:['EV','New'], region:'Nationwide', ev:true },
-  { make:'Audi', model:'Q5 TFSI e', trim:'Prestige', payment:679, term:36, miles:'10,000', due:4500, msrp:74000, discount:9, score:80, badges:['Luxury','EV'], region:'Southeast', ev:true },
-  { make:'Genesis', model:'GV70', trim:'2.5T Sport Prestige', payment:469, term:36, miles:'12,000', due:2800, msrp:58000, discount:14, score:93, badges:['Hot','New'], region:'Midwest', ev:false },
-  { make:'Kia', model:'EV6', trim:'Wind AWD', payment:319, term:36, miles:'10,000', due:2000, msrp:45000, discount:7, score:89, badges:['EV'], region:'Nationwide', ev:true },
-  { make:'Toyota', model:'RAV4 Prime', trim:'XSE Premium', payment:399, term:36, miles:'12,000', due:2500, msrp:48000, discount:5, score:82, badges:['EV'], region:'West Coast', ev:true },
+  { make:'BMW', model:'X5 xDrive40i', trim:'Premium Package', payment:549, term:36, miles:'10,000', due:3500, msrp:72000, discount:9, score:87, badges:['Hot','Luxury'], region:'Northeast', ev:false, img:'https://source.unsplash.com/featured/600x340/?BMW,X5,luxury,car' },
+  { make:'Tesla', model:'Model Y', trim:'Long Range AWD', payment:389, term:36, miles:'10,000', due:2500, msrp:49000, discount:6, score:91, badges:['Hot','EV'], region:'Nationwide', ev:true, img:'https://source.unsplash.com/featured/600x340/?Tesla,electric,car' },
+  { make:'Mercedes-Benz', model:'GLC 300', trim:'4MATIC AMG Line', payment:619, term:36, miles:'10,000', due:4000, msrp:68000, discount:11, score:84, badges:['Luxury'], region:'West Coast', ev:false, img:'https://source.unsplash.com/featured/600x340/?Mercedes,luxury,car' },
+  { make:'Hyundai', model:'Ioniq 6', trim:'SE Standard Range', payment:239, term:36, miles:'12,000', due:1500, msrp:38000, discount:8, score:95, badges:['Hot','EV'], region:'Nationwide', ev:true, img:'https://source.unsplash.com/featured/600x340/?Hyundai,Ioniq,electric,sedan' },
+  { make:'Volvo', model:'XC60 Recharge', trim:'T8 Plus Dark', payment:499, term:36, miles:'10,000', due:3000, msrp:64000, discount:13, score:88, badges:['EV','New'], region:'Nationwide', ev:true, img:'https://source.unsplash.com/featured/600x340/?Volvo,SUV,car' },
+  { make:'Audi', model:'Q5 TFSI e', trim:'Prestige', payment:679, term:36, miles:'10,000', due:4500, msrp:74000, discount:9, score:80, badges:['Luxury','EV'], region:'Southeast', ev:true, img:'https://source.unsplash.com/featured/600x340/?Audi,Q5,luxury,car' },
+  { make:'Genesis', model:'GV70', trim:'2.5T Sport Prestige', payment:469, term:36, miles:'12,000', due:2800, msrp:58000, discount:14, score:93, badges:['Hot','New'], region:'Midwest', ev:false, img:'https://source.unsplash.com/featured/600x340/?Genesis,GV70,SUV,car' },
+  { make:'Kia', model:'EV6', trim:'Wind AWD', payment:319, term:36, miles:'10,000', due:2000, msrp:45000, discount:7, score:89, badges:['EV'], region:'Nationwide', ev:true, img:'https://source.unsplash.com/featured/600x340/?Kia,EV6,electric,car' },
+  { make:'Toyota', model:'RAV4 Prime', trim:'XSE Premium', payment:399, term:36, miles:'12,000', due:2500, msrp:48000, discount:5, score:82, badges:['EV'], region:'West Coast', ev:true, img:'https://source.unsplash.com/featured/600x340/?Toyota,RAV4,hybrid,SUV' },
 ];
 
 function badgeHTML(b) {
@@ -791,11 +806,16 @@ function badgeHTML(b) {
 function dealCardHTML(d) {
   return `
   <div class="deal-card">
-    <div class="deal-card-header">
-      <div class="deal-badges">${d.badges.map(badgeHTML).join('')}</div>
-      <div class="deal-score">
-        <div class="score-val">${d.score}</div>
-        <div class="score-label">Deal score</div>
+    <div class="deal-card-img">
+      <img src="${d.img}" alt="${d.make} ${d.model}" loading="lazy" />
+      <div class="deal-card-overlay">
+        <div class="overlay-top-right">
+          <div class="score-chip">
+            <div class="score-val">${d.score}</div>
+            <div class="score-label">Deal score</div>
+          </div>
+        </div>
+        <div class="deal-badges">${d.badges.map(badgeHTML).join('')}</div>
       </div>
     </div>
     <div class="deal-card-body">
