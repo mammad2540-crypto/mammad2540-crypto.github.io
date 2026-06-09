@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Reserve your deal — EzPzLease</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue-50: #E6F1FB;
+    --blue-100: #B5D4F4;
+    --blue-200: #85B7EB;
+    --blue-400: #378ADD;
+    --blue-600: #185FA5;
+    --blue-800: #0C447C;
+    --blue-900: #042C53;
+    --gray-50: #F7F9FC;
+    --gray-100: #EDF1F7;
+    --gray-200: #D8E0ED;
+    --gray-400: #8895A7;
+    --gray-600: #4A5568;
+    --gray-800: #1A202C;
+    --white: #FFFFFF;
+    --green-100: #DCFCE7;
+    --green-700: #15803D;
+    --amber-100: #FEF3C7;
+    --amber-700: #B45309;
+    --red-100: #FEE2E2;
+    --red-700: #B91C1C;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 16px rgba(24,95,165,0.10);
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--gray-50);
+    color: var(--gray-800);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* NAV (mirrors index.html) */
+  nav { background: var(--white); border-bottom: 1px solid var(--gray-200); position: sticky; top: 0; z-index: 100; }
+  .nav-inner { max-width: 1140px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo-mark { width: 36px; height: 36px; background: var(--blue-600); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 14px; letter-spacing: -0.5px; }
+  .logo-text { font-weight: 700; font-size: 18px; color: var(--gray-800); letter-spacing: -0.5px; }
+  .logo-text span { color: var(--blue-600); }
+  .nav-links { display: flex; align-items: center; gap: 6px; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--gray-600); font-size: 14px; font-weight: 500; padding: 6px 14px; border-radius: var(--radius-sm); transition: background 0.15s, color 0.15s; }
+  .nav-links a:hover { background: var(--gray-100); color: var(--gray-800); }
+  .nav-links a.cta { background: var(--blue-600); color: white; padding: 7px 18px; border-radius: var(--radius-md); font-weight: 600; }
+  .nav-links a.cta:hover { background: var(--blue-800); }
+
+  /* PAGE LAYOUT */
+  .reserve-hero {
+    background: linear-gradient(135deg, var(--blue-900) 0%, var(--blue-600) 100%);
+    padding: 48px 24px 32px;
+    color: white;
+  }
+  .reserve-hero-inner { max-width: 1140px; margin: 0 auto; }
+  .breadcrumb { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 8px; }
+  .breadcrumb a { color: rgba(255,255,255,0.9); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+  .reserve-hero h1 { font-size: 32px; font-weight: 800; letter-spacing: -1px; margin-bottom: 6px; }
+  .reserve-hero .sub { color: rgba(255,255,255,0.8); font-size: 15px; }
+
+  .layout {
+    max-width: 1140px;
+    margin: -24px auto 0;
+    padding: 0 24px 64px;
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 28px;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+  }
+
+  /* FORM CARD */
+  .form-card, .summary-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+  }
+  .form-card { padding: 28px 32px; }
+  .form-section { margin-bottom: 28px; }
+  .form-section:last-of-type { margin-bottom: 0; }
+  .section-h {
+    font-size: 12px; font-weight: 700; color: var(--blue-600);
+    text-transform: uppercase; letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+  .section-t {
+    font-size: 18px; font-weight: 700; color: var(--gray-800);
+    margin-bottom: 16px; letter-spacing: -0.3px;
+  }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .row.row-3 { grid-template-columns: 2fr 1fr 1fr; }
+  .row:last-child { margin-bottom: 0; }
+  @media (max-width: 600px) {
+    .row, .row.row-3 { grid-template-columns: 1fr; }
+  }
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field.full { grid-column: 1 / -1; }
+  .field label {
+    font-size: 12px; font-weight: 600; color: var(--gray-600);
+    text-transform: uppercase; letter-spacing: 0.4px;
+  }
+  .field label .req { color: var(--red-700); }
+  .field input, .field select, .field textarea {
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    padding: 10px 12px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    color: var(--gray-800);
+    background: var(--gray-50);
+    outline: none;
+    transition: border-color 0.15s, background 0.15s;
+    width: 100%;
+  }
+  .field textarea { resize: vertical; min-height: 90px; }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    border-color: var(--blue-400); background: var(--white);
+  }
+  .field input:invalid:not(:placeholder-shown) { border-color: var(--red-700); }
+
+  .check-row { display: flex; gap: 10px; align-items: flex-start; padding: 12px; background: var(--gray-50); border-radius: var(--radius-md); }
+  .check-row input { margin-top: 3px; accent-color: var(--blue-600); }
+  .check-row label { font-size: 13px; color: var(--gray-600); cursor: pointer; }
+
+  .submit-row { margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--gray-100); display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .btn-reserve {
+    background: var(--blue-600); color: white; border: none;
+    border-radius: var(--radius-md); padding: 13px 32px;
+    font-size: 15px; font-weight: 700; cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: background 0.15s, transform 0.15s;
+  }
+  .btn-reserve:hover:not(:disabled) { background: var(--blue-800); }
+  .btn-reserve:disabled { background: var(--gray-400); cursor: not-allowed; }
+  .btn-cancel {
+    background: transparent; color: var(--gray-600);
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius-md); padding: 12px 24px;
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+  }
+  .btn-cancel:hover { background: var(--gray-100); }
+  .submit-note { font-size: 12px; color: var(--gray-400); margin-left: auto; }
+
+  /* SUMMARY CARD */
+  .summary-card { overflow: hidden; position: sticky; top: 88px; }
+  .summary-img { height: 180px; background: var(--gray-100); overflow: hidden; }
+  .summary-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .summary-body { padding: 20px 22px; }
+  .summary-badges { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 10px; }
+  .badge { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 100px; letter-spacing: 0.3px; }
+  .badge-hot { background: var(--red-100); color: var(--red-700); }
+  .badge-ev { background: var(--green-100); color: var(--green-700); }
+  .badge-new { background: var(--blue-50); color: var(--blue-600); }
+  .badge-luxury { background: var(--amber-100); color: var(--amber-700); }
+  .summary-make { font-size: 11px; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 1px; }
+  .summary-model { font-size: 20px; font-weight: 800; color: var(--gray-800); letter-spacing: -0.5px; margin-top: 2px; }
+  .summary-trim { font-size: 13px; color: var(--gray-400); margin-bottom: 16px; }
+  .summary-payment { display: flex; align-items: baseline; gap: 4px; margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid var(--gray-100); }
+  .summary-payment .amt { font-size: 32px; font-weight: 800; color: var(--gray-800); letter-spacing: -1px; }
+  .summary-payment .unit { font-size: 14px; color: var(--gray-400); font-weight: 500; }
+  .summary-list { display: flex; flex-direction: column; gap: 10px; }
+  .summary-row { display: flex; justify-content: space-between; font-size: 13px; }
+  .summary-row .k { color: var(--gray-400); }
+  .summary-row .v { color: var(--gray-800); font-weight: 600; }
+  .summary-score {
+    margin-top: 16px; padding: 12px; background: var(--blue-50);
+    border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center;
+  }
+  .summary-score .k { font-size: 12px; font-weight: 600; color: var(--blue-800); text-transform: uppercase; letter-spacing: 0.5px; }
+  .summary-score .v { font-size: 22px; font-weight: 800; color: var(--blue-600); letter-spacing: -0.5px; }
+
+  /* DISCLAIMER */
+  .disclaimer {
+    max-width: 1140px; margin: 0 auto; padding: 0 24px 48px;
+    font-size: 12px; color: var(--gray-400); line-height: 1.6;
+  }
+
+  /* SUCCESS / ERROR */
+  .alert { padding: 16px 20px; border-radius: var(--radius-md); margin-bottom: 20px; font-size: 14px; }
+  .alert-success { background: var(--green-100); color: var(--green-700); border: 1px solid #86efac; }
+  .alert-error { background: var(--red-100); color: var(--red-700); border: 1px solid #fca5a5; }
+  .success-card {
+    background: var(--white); border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg); padding: 48px 40px; text-align: center;
+    box-shadow: var(--shadow-sm);
+  }
+  .success-icon {
+    width: 64px; height: 64px; background: var(--green-100);
+    color: var(--green-700); border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+  }
+  .success-card h2 { font-size: 26px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; }
+  .success-card p { color: var(--gray-600); margin-bottom: 24px; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .hidden { display: none !important; }
+
+  /* FOOTER */
+  footer { background: var(--gray-800); color: rgba(255,255,255,0.5); padding: 32px 24px; text-align: center; }
+  footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+  footer .footer-logo { color: white; font-weight: 800; font-size: 18px; letter-spacing: -0.5px; margin-bottom: 8px; }
+  footer p { font-size: 13px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-mark">EP</div>
+      <span class="logo-text">EzPz<span>Lease</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#deals">Browse Deals</a></li>
+      <li><a href="#">Calculator</a></li>
+      <li><a href="#">Leasing 101</a></li>
+      <li><a href="#">Community</a></li>
+      <li><a href="#" class="cta">Join Free</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="reserve-hero">
+  <div class="reserve-hero-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a> &nbsp;›&nbsp; <a href="index.html">Browse Deals</a> &nbsp;›&nbsp; Reserve</div>
+    <h1 id="hero-title">Reserve your deal</h1>
+    <div class="sub" id="hero-sub">Confirm your details — a specialist will reach out within one business day.</div>
+  </div>
+</div>
+
+<div class="layout" id="layout">
+
+  <div>
+    <div id="alert-slot"></div>
+
+    <div class="form-card" id="form-card">
+      <form id="reserve-form" novalidate>
+        <input type="hidden" name="deal_id" id="f-deal-id" />
+        <input type="hidden" name="deal_summary" id="f-deal-summary" />
+
+        <div class="form-section">
+          <div class="section-h">Step 1</div>
+          <div class="section-t">Contact information</div>
+          <div class="row">
+            <div class="field">
+              <label>First name <span class="req">*</span></label>
+              <input type="text" name="first_name" required placeholder="Jane" />
+            </div>
+            <div class="field">
+              <label>Last name <span class="req">*</span></label>
+              <input type="text" name="last_name" required placeholder="Doe" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="field">
+              <label>Email <span class="req">*</span></label>
+              <input type="email" name="email" required placeholder="jane@example.com" />
+            </div>
+            <div class="field">
+              <label>Phone <span class="req">*</span></label>
+              <input type="tel" name="phone" required placeholder="(555) 123-4567" />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="section-h">Step 2</div>
+          <div class="section-t">Vehicle registration address</div>
+          <div class="row">
+            <div class="field full">
+              <label>Street address <span class="req">*</span></label>
+              <input type="text" name="street" required placeholder="123 Main St" />
+            </div>
+          </div>
+          <div class="row row-3">
+            <div class="field">
+              <label>City <span class="req">*</span></label>
+              <input type="text" name="city" required placeholder="Los Angeles" />
+            </div>
+            <div class="field">
+              <label>State <span class="req">*</span></label>
+              <select name="state" required>
+                <option value="">Select…</option>
+                <option>AL</option><option>AK</option><option>AZ</option><option>AR</option><option>CA</option>
+                <option>CO</option><option>CT</option><option>DE</option><option>FL</option><option>GA</option>
+                <option>HI</option><option>ID</option><option>IL</option><option>IN</option><option>IA</option>
+                <option>KS</option><option>KY</option><option>LA</option><option>ME</option><option>MD</option>
+                <option>MA</option><option>MI</option><option>MN</option><option>MS</option><option>MO</option>
+                <option>MT</option><option>NE</option><option>NV</option><option>NH</option><option>NJ</option>
+                <option>NM</option><option>NY</option><option>NC</option><option>ND</option><option>OH</option>
+                <option>OK</option><option>OR</option><option>PA</option><option>RI</option><option>SC</option>
+                <option>SD</option><option>TN</option><option>TX</option><option>UT</option><option>VT</option>
+                <option>VA</option><option>WA</option><option>WV</option><option>WI</option><option>WY</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>ZIP <span class="req">*</span></label>
+              <input type="text" name="zip" required inputmode="numeric" pattern="[0-9]{5}" placeholder="90001" />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="section-h">Step 3</div>
+          <div class="section-t">Lease preferences</div>
+          <div class="row">
+            <div class="field">
+              <label>Miles per year</label>
+              <select name="miles_per_year">
+                <option>7,500</option>
+                <option selected>10,000</option>
+                <option>12,000</option>
+                <option>15,000</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Color preference</label>
+              <input type="text" name="color" placeholder="e.g. White, Black, no preference" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="field full">
+              <label>Additional comments</label>
+              <textarea name="comments" placeholder="Anything we should know — timing, trade-in, financing questions, etc."></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field full">
+              <div class="check-row">
+                <input type="checkbox" id="ewt" name="excess_wear" value="yes" />
+                <label for="ewt">I'm interested in excess wear &amp; maintenance protection.</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field full">
+              <label>How did you hear about us? <span class="req">*</span></label>
+              <select name="source" required>
+                <option value="">Select…</option>
+                <option>Google search</option>
+                <option>Friend or referral</option>
+                <option>Reddit</option>
+                <option>Instagram / TikTok</option>
+                <option>YouTube</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="submit-row">
+          <button type="submit" class="btn-reserve" id="submit-btn">Reserve this deal</button>
+          <a href="index.html" class="btn-cancel">Cancel</a>
+          <span class="submit-note">No credit check. No commitment.</span>
+        </div>
+      </form>
+    </div>
+
+    <div class="success-card hidden" id="success-card">
+      <div class="success-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>
+      </div>
+      <h2>Reservation received!</h2>
+      <p>Thanks — we've sent your details to our team. A leasing specialist will reach out within one business day to confirm availability and walk through next steps.</p>
+      <a href="index.html" class="btn-cancel">Back to deals</a>
+    </div>
+  </div>
+
+  <aside>
+    <div class="summary-card" id="summary-card">
+      <div class="summary-img"><img id="s-img" alt="" /></div>
+      <div class="summary-body">
+        <div class="summary-badges" id="s-badges"></div>
+        <div class="summary-make" id="s-make"></div>
+        <div class="summary-model" id="s-model"></div>
+        <div class="summary-trim" id="s-trim"></div>
+        <div class="summary-payment">
+          <span class="amt" id="s-payment"></span>
+          <span class="unit">/mo</span>
+        </div>
+        <div class="summary-list">
+          <div class="summary-row"><span class="k">Term</span><span class="v" id="s-term"></span></div>
+          <div class="summary-row"><span class="k">Miles/yr</span><span class="v" id="s-miles"></span></div>
+          <div class="summary-row"><span class="k">Due at signing</span><span class="v" id="s-due"></span></div>
+          <div class="summary-row"><span class="k">MSRP</span><span class="v" id="s-msrp"></span></div>
+          <div class="summary-row"><span class="k">Discount</span><span class="v" id="s-discount"></span></div>
+          <div class="summary-row"><span class="k">Region</span><span class="v" id="s-region"></span></div>
+        </div>
+        <div class="summary-score">
+          <span class="k">Deal score</span>
+          <span class="v" id="s-score"></span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+</div>
+
+<div class="disclaimer">
+  <strong>Disclaimer:</strong> EzPzLease does NOT directly sell or lease any vehicle to you. Reservations are subject to vehicle availability,
+  credit approval, and final pricing confirmation by a participating dealer. Taxes, fees, and registration costs vary by region. Excess
+  wear and mileage liabilities apply at end of term per your lease contract. Quoted payments assume top-tier credit.
+</div>
+
+<footer>
+  <div class="footer-logo">EzPzLease</div>
+  <p>The smarter way to lease a car. © 2026 EzPzLease LLC. All rights reserved.</p>
+  <p style="margin-top:8px;"><a href="index.html">Home</a> &nbsp;·&nbsp; <a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Terms</a> &nbsp;·&nbsp; <a href="#">Contact</a></p>
+</footer>
+
+<script>
+// ===== Deal catalog (kept in sync with index.html) =====
+const DEALS = [
+  { id:'bmw-x5',         make:'BMW',           model:'X5 xDrive40i',   trim:'Premium Package',     payment:549, term:36, miles:'10,000', due:3500, msrp:72000, discount:9,  score:87, badges:['Hot','Luxury'], region:'Northeast',  ev:false, img:'images/bmw-x5.jpg' },
+  { id:'tesla-modely',   make:'Tesla',         model:'Model Y',        trim:'Long Range AWD',      payment:389, term:36, miles:'10,000', due:2500, msrp:49000, discount:6,  score:91, badges:['Hot','EV'],     region:'Nationwide', ev:true,  img:'images/tesla-modely.jpg' },
+  { id:'mercedes-glc',   make:'Mercedes-Benz', model:'GLC 300',        trim:'4MATIC AMG Line',     payment:619, term:36, miles:'10,000', due:4000, msrp:68000, discount:11, score:84, badges:['Luxury'],       region:'West Coast', ev:false, img:'images/mercedes-glc.jpg' },
+  { id:'hyundai-ioniq6', make:'Hyundai',       model:'Ioniq 6',        trim:'SE Standard Range',   payment:239, term:36, miles:'12,000', due:1500, msrp:38000, discount:8,  score:95, badges:['Hot','EV'],     region:'Nationwide', ev:true,  img:'images/hyundai-ioniq6.jpg' },
+  { id:'volvo-xc60',     make:'Volvo',         model:'XC60 Recharge',  trim:'T8 Plus Dark',        payment:499, term:36, miles:'10,000', due:3000, msrp:64000, discount:13, score:88, badges:['EV','New'],     region:'Nationwide', ev:true,  img:'images/volvo-xc60.jpg' },
+  { id:'audi-q5',        make:'Audi',          model:'Q5 TFSI e',      trim:'Prestige',            payment:679, term:36, miles:'10,000', due:4500, msrp:74000, discount:9,  score:80, badges:['Luxury','EV'],  region:'Southeast',  ev:true,  img:'images/audi-q5.jpg' },
+  { id:'genesis-gv70',   make:'Genesis',       model:'GV70',           trim:'2.5T Sport Prestige', payment:469, term:36, miles:'12,000', due:2800, msrp:58000, discount:14, score:93, badges:['Hot','New'],    region:'Midwest',    ev:false, img:'images/genesis-gv70.jpg' },
+  { id:'kia-ev6',        make:'Kia',           model:'EV6',            trim:'Wind AWD',            payment:319, term:36, miles:'10,000', due:2000, msrp:45000, discount:7,  score:89, badges:['EV'],           region:'Nationwide', ev:true,  img:'images/kia-ev6.jpg' },
+  { id:'toyota-rav4',    make:'Toyota',        model:'RAV4 Prime',     trim:'XSE Premium',         payment:399, term:36, miles:'12,000', due:2500, msrp:48000, discount:5,  score:82, badges:['EV'],           region:'West Coast', ev:true,  img:'images/toyota-rav4.jpg' },
+];
+
+// ===== EmailJS configuration =====
+// Sign up at https://www.emailjs.com (free, 200 emails/mo), connect a Gmail/Outlook
+// account, then create a Template that includes the form variables below
+// (first_name, last_name, email, phone, street, city, state, zip,
+// miles_per_year, color, comments, excess_wear, source, deal_id, deal_summary).
+// Set the template's "To Email" field to info@ezpzlease.com. Then fill these three:
+const EMAILJS_PUBLIC_KEY  = '8FdjqigVXn1KJFvdN';
+const EMAILJS_SERVICE_ID  = 'service_iwj9nkh';
+const EMAILJS_TEMPLATE_ID = 'template_fnm90al';
+
+// ===== Boot =====
+const params = new URLSearchParams(location.search);
+const dealId = params.get('deal');
+const deal = DEALS.find(d => d.id === dealId);
+
+if (!deal) {
+  document.getElementById('layout').innerHTML =
+    '<div class="form-card" style="grid-column:1/-1"><h2 style="margin-bottom:8px">Deal not found</h2>' +
+    '<p style="color:var(--gray-600);margin-bottom:16px">We couldn\'t find that deal. It may have expired or the link is incorrect.</p>' +
+    '<a href="index.html" class="btn-cancel">Back to deals</a></div>';
+} else {
+  renderSummary(deal);
+  initForm(deal);
+}
+
+function renderSummary(d) {
+  document.getElementById('hero-title').textContent = `Reserve your ${d.make} ${d.model}`;
+  document.getElementById('hero-sub').textContent =
+    `$${d.payment}/mo · ${d.term} mo · ${d.miles} mi/yr · $${d.due.toLocaleString()} due at signing`;
+  document.title = `Reserve ${d.make} ${d.model} — EzPzLease`;
+
+  const badgeMap = { Hot:'badge-hot', EV:'badge-ev', New:'badge-new', Luxury:'badge-luxury' };
+  document.getElementById('s-img').src = d.img;
+  document.getElementById('s-img').alt = `${d.make} ${d.model}`;
+  document.getElementById('s-badges').innerHTML =
+    d.badges.map(b => `<span class="badge ${badgeMap[b]||'badge-new'}">${b}</span>`).join('');
+  document.getElementById('s-make').textContent = d.make;
+  document.getElementById('s-model').textContent = d.model;
+  document.getElementById('s-trim').textContent = d.trim;
+  document.getElementById('s-payment').textContent = `$${d.payment}`;
+  document.getElementById('s-term').textContent = `${d.term} months`;
+  document.getElementById('s-miles').textContent = `${d.miles} mi`;
+  document.getElementById('s-due').textContent = `$${d.due.toLocaleString()}`;
+  document.getElementById('s-msrp').textContent = `$${d.msrp.toLocaleString()}`;
+  document.getElementById('s-discount').textContent = `${d.discount}% off MSRP`;
+  document.getElementById('s-region').textContent = d.region;
+  document.getElementById('s-score').textContent = d.score;
+}
+
+function initForm(d) {
+  const summaryStr =
+    `${d.make} ${d.model} — ${d.trim} | $${d.payment}/mo · ${d.term} mo · ${d.miles} mi/yr · ` +
+    `$${d.due.toLocaleString()} DAS · MSRP $${d.msrp.toLocaleString()} · ${d.discount}% off · ${d.region}`;
+  document.getElementById('f-deal-id').value = d.id;
+  document.getElementById('f-deal-summary').value = summaryStr;
+
+  if (window.emailjs && EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+  }
+
+  const form = document.getElementById('reserve-form');
+  const btn  = document.getElementById('submit-btn');
+  const alertSlot = document.getElementById('alert-slot');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    alertSlot.innerHTML = '';
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    if (EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY') {
+      alertSlot.innerHTML =
+        '<div class="alert alert-error">EmailJS is not configured yet. ' +
+        'Edit reserve.html and replace EMAILJS_PUBLIC_KEY, EMAILJS_SERVICE_ID, and EMAILJS_TEMPLATE_ID.</div>';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    try {
+      await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form);
+      document.getElementById('form-card').classList.add('hidden');
+      document.getElementById('summary-card').style.opacity = '0.7';
+      document.getElementById('success-card').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = 'Reserve this deal';
+      alertSlot.innerHTML =
+        '<div class="alert alert-error">Sorry — we couldn\'t send your reservation. ' +
+        'Please try again, or email <a href="mailto:info@ezpzlease.com" style="color:inherit;text-decoration:underline">info@ezpzlease.com</a> directly. ' +
+        '(' + (err && err.text || err && err.message || 'unknown error') + ')</div>';
+    }
+  });
+}
+</script>
+</body>
+</html>
