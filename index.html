@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EzPzLease — Smarter Car Leasing</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue-50: #E6F1FB;
+    --blue-100: #B5D4F4;
+    --blue-200: #85B7EB;
+    --blue-400: #378ADD;
+    --blue-600: #185FA5;
+    --blue-800: #0C447C;
+    --blue-900: #042C53;
+    --gray-50: #F7F9FC;
+    --gray-100: #EDF1F7;
+    --gray-200: #D8E0ED;
+    --gray-400: #8895A7;
+    --gray-600: #4A5568;
+    --gray-800: #1A202C;
+    --white: #FFFFFF;
+    --green-100: #DCFCE7;
+    --green-700: #15803D;
+    --amber-100: #FEF3C7;
+    --amber-700: #B45309;
+    --red-100: #FEE2E2;
+    --red-700: #B91C1C;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 16px rgba(24,95,165,0.10);
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--gray-50);
+    color: var(--gray-800);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .logo-mark {
+    width: 36px;
+    height: 36px;
+    background: var(--blue-600);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: -0.5px;
+  }
+  .logo-text {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--gray-800);
+    letter-spacing: -0.5px;
+  }
+  .logo-text span { color: var(--blue-600); }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--gray-600);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: var(--radius-sm);
+    transition: background 0.15s, color 0.15s;
+  }
+  .nav-links a:hover { background: var(--gray-100); color: var(--gray-800); }
+  .nav-links a.active { background: var(--blue-50); color: var(--blue-600); }
+  .nav-links a.cta {
+    background: var(--blue-600);
+    color: white;
+    padding: 7px 18px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+  }
+  .nav-links a.cta:hover { background: var(--blue-800); }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--blue-900) 0%, var(--blue-600) 100%);
+    padding: 80px 24px 90px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+  }
+  .hero-inner { max-width: 700px; margin: 0 auto; position: relative; }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.12);
+    color: var(--blue-100);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(255,255,255,0.15);
+    letter-spacing: 0.3px;
+  }
+  .hero h1 {
+    font-size: 52px;
+    font-weight: 800;
+    color: white;
+    letter-spacing: -2px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .hero h1 span { color: #7DC4FF; }
+  .hero p {
+    font-size: 18px;
+    color: rgba(255,255,255,0.75);
+    max-width: 520px;
+    margin: 0 auto 36px;
+    line-height: 1.6;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: white;
+    color: var(--blue-800);
+    font-weight: 700;
+    font-size: 15px;
+    padding: 13px 28px;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+  .btn-outline {
+    background: transparent;
+    color: white;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 13px 28px;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    border: 1.5px solid rgba(255,255,255,0.35);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.10); }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .stats-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .stat-item { text-align: center; }
+  .stat-number { font-size: 24px; font-weight: 800; color: var(--blue-600); letter-spacing: -1px; }
+  .stat-label { font-size: 12px; color: var(--gray-400); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* SECTION */
+  .section { padding: 64px 24px; }
+  .container { max-width: 1140px; margin: 0 auto; }
+  .section-header { margin-bottom: 36px; }
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--blue-600);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--gray-800);
+    letter-spacing: -0.8px;
+    margin-bottom: 10px;
+  }
+  .section-sub { font-size: 15px; color: var(--gray-400); }
+
+  /* FILTER BAR */
+  .filter-bar {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-xl);
+    padding: 20px 24px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    margin-bottom: 32px;
+    box-shadow: var(--shadow-sm);
+  }
+  .filter-group { display: flex; flex-direction: column; gap: 6px; flex: 1; min-width: 120px; }
+  .filter-group label { font-size: 11px; font-weight: 600; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.5px; }
+  .filter-group select, .filter-group input[type="text"] {
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    padding: 9px 12px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    color: var(--gray-800);
+    background: var(--gray-50);
+    outline: none;
+    transition: border-color 0.15s;
+    cursor: pointer;
+  }
+  .filter-group select:focus, .filter-group input[type="text"]:focus {
+    border-color: var(--blue-400);
+    background: var(--white);
+  }
+  .payment-range { flex: 1.5; min-width: 200px; }
+  .range-row { display: flex; align-items: center; gap: 10px; }
+  .range-row input[type="range"] {
+    flex: 1;
+    accent-color: var(--blue-600);
+    height: 4px;
+    cursor: pointer;
+  }
+  .range-val { font-size: 14px; font-weight: 600; color: var(--blue-600); min-width: 60px; }
+  .filter-btn {
+    background: var(--blue-600);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    padding: 11px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+    font-family: 'Inter', sans-serif;
+    white-space: nowrap;
+  }
+  .filter-btn:hover { background: var(--blue-800); }
+
+  /* DEAL CARDS GRID */
+  .deals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 20px;
+  }
+  .deal-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  .deal-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--blue-200);
+  }
+  .deal-card-header {
+    background: var(--gray-100);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .deal-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.3px;
+  }
+  .badge-hot { background: var(--red-100); color: var(--red-700); }
+  .badge-ev { background: var(--green-100); color: var(--green-700); }
+  .badge-new { background: var(--blue-50); color: var(--blue-600); }
+  .badge-luxury { background: var(--amber-100); color: var(--amber-700); }
+  .deal-score {
+    text-align: right;
+  }
+  .score-val { font-size: 22px; font-weight: 800; color: var(--blue-600); letter-spacing: -1px; }
+  .score-label { font-size: 10px; color: var(--gray-400); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .deal-card-body { padding: 18px 20px; }
+  .deal-make { font-size: 11px; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px; }
+  .deal-model { font-size: 19px; font-weight: 800; color: var(--gray-800); letter-spacing: -0.5px; margin-bottom: 4px; }
+  .deal-trim { font-size: 13px; color: var(--gray-400); margin-bottom: 14px; }
+  .deal-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .deal-stat { }
+  .deal-stat-val { font-size: 15px; font-weight: 700; color: var(--gray-800); }
+  .deal-stat-key { font-size: 11px; color: var(--gray-400); font-weight: 500; }
+  .deal-payment-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 14px;
+    border-top: 1px solid var(--gray-100);
+  }
+  .deal-payment {
+    display: flex;
+    align-items: baseline;
+    gap: 3px;
+  }
+  .payment-amount { font-size: 28px; font-weight: 800; color: var(--gray-800); letter-spacing: -1px; }
+  .payment-unit { font-size: 13px; color: var(--gray-400); font-weight: 500; }
+  .deal-region {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: var(--gray-400);
+    font-weight: 500;
+  }
+  .deal-region svg { flex-shrink: 0; }
+  .btn-deal {
+    width: 100%;
+    background: var(--blue-50);
+    color: var(--blue-600);
+    border: none;
+    border-radius: var(--radius-md);
+    padding: 11px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 14px;
+    transition: background 0.15s;
+    font-family: 'Inter', sans-serif;
+  }
+  .btn-deal:hover { background: var(--blue-100); color: var(--blue-800); }
+
+  /* FEATURED STRIP */
+  .featured-strip {
+    background: var(--blue-900);
+    padding: 40px 24px;
+    text-align: center;
+  }
+  .featured-inner { max-width: 900px; margin: 0 auto; }
+  .featured-strip h2 { color: white; font-size: 26px; font-weight: 800; letter-spacing: -0.8px; margin-bottom: 8px; }
+  .featured-strip p { color: rgba(255,255,255,0.65); font-size: 15px; margin-bottom: 24px; }
+  .membership-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    text-align: left;
+  }
+  .mem-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+  }
+  .mem-card.featured-mem {
+    background: var(--blue-600);
+    border-color: var(--blue-400);
+    position: relative;
+  }
+  .mem-card-badge {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    color: var(--blue-800);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 12px;
+    border-radius: 100px;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+  }
+  .mem-name { color: rgba(255,255,255,0.7); font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px; }
+  .mem-price { color: white; font-size: 28px; font-weight: 800; letter-spacing: -1px; margin-bottom: 4px; }
+  .mem-price span { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.6); }
+  .mem-features { list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
+  .mem-features li { font-size: 13px; color: rgba(255,255,255,0.8); display: flex; align-items: center; gap: 7px; }
+  .mem-features li::before { content: '✓'; color: #7DC4FF; font-weight: 700; flex-shrink: 0; }
+  .mem-btn {
+    margin-top: 16px;
+    width: 100%;
+    background: rgba(255,255,255,0.15);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: var(--radius-md);
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: background 0.15s;
+  }
+  .featured-mem .mem-btn { background: white; color: var(--blue-800); border-color: white; }
+  .mem-btn:hover { background: rgba(255,255,255,0.25); }
+  .featured-mem .mem-btn:hover { background: var(--gray-100); }
+
+  /* HOW IT WORKS */
+  .how-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+  .how-step {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+  }
+  .how-num {
+    width: 40px; height: 40px;
+    background: var(--blue-50);
+    color: var(--blue-600);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+  .how-step h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: var(--gray-800); }
+  .how-step p { font-size: 13px; color: var(--gray-400); line-height: 1.6; }
+
+  /* PAGE TOGGLE */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* FOOTER */
+  footer {
+    background: var(--gray-800);
+    color: rgba(255,255,255,0.5);
+    padding: 32px 24px;
+    text-align: center;
+  }
+  footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+  footer .footer-logo { color: white; font-weight: 800; font-size: 18px; letter-spacing: -0.5px; margin-bottom: 8px; }
+  footer p { font-size: 13px; }
+
+  /* DEALS PAGE SPECIFIC */
+  .deals-header {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 32px 24px 0;
+  }
+  .deals-header-inner { max-width: 1140px; margin: 0 auto; }
+  .deals-header h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.8px; margin-bottom: 6px; }
+  .deals-header p { font-size: 14px; color: var(--gray-400); margin-bottom: 20px; }
+  .deals-tabs { display: flex; gap: 4px; }
+  .tab {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 18px;
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--gray-400);
+    font-family: 'Inter', sans-serif;
+    transition: color 0.15s;
+  }
+  .tab.active {
+    background: var(--blue-50);
+    color: var(--blue-600);
+    border-bottom: 2px solid var(--blue-600);
+  }
+  .results-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .results-count { font-size: 14px; color: var(--gray-400); font-weight: 500; }
+  .sort-row { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--gray-400); }
+  .sort-row select {
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius-sm);
+    padding: 5px 10px;
+    font-size: 13px;
+    font-family: 'Inter', sans-serif;
+    background: var(--white);
+    outline: none;
+    cursor: pointer;
+    color: var(--gray-800);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo" onclick="showPage('home')">
+      <div class="logo-mark">EP</div>
+      <span class="logo-text">EzPz<span>Lease</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#" id="nav-home" class="active" onclick="showPage('home')">Home</a></li>
+      <li><a href="#" id="nav-deals" onclick="showPage('deals')">Browse Deals</a></li>
+      <li><a href="#">Calculator</a></li>
+      <li><a href="#">Leasing 101</a></li>
+      <li><a href="#">Community</a></li>
+      <li><a href="#" class="cta">Join Free</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ===== HOME PAGE ===== -->
+<div id="page-home" class="page active">
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">🚗 500+ live deals updated daily</div>
+      <h1>Lease smarter.<br/><span>Pay less.</span></h1>
+      <p>Advanced filtering, real-time incentives, and a community of lease experts — all in one place.</p>
+      <div class="hero-ctas">
+        <a href="#" class="btn-primary" onclick="showPage('deals')">
+          Browse Deals
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#" class="btn-outline">Learn How It Works</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-item"><div class="stat-number">$287</div><div class="stat-label">Avg monthly payment</div></div>
+      <div class="stat-item"><div class="stat-number">12,400+</div><div class="stat-label">Members</div></div>
+      <div class="stat-item"><div class="stat-number">$4,100</div><div class="stat-label">Avg annual savings</div></div>
+      <div class="stat-item"><div class="stat-number">98%</div><div class="stat-label">Member satisfaction</div></div>
+    </div>
+  </div>
+
+  <div class="section" style="background: var(--white);">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Top Deals This Month</div>
+        <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+          <div class="section-title">Featured lease deals</div>
+          <a href="#" onclick="showPage('deals')" style="font-size:14px; color:var(--blue-600); font-weight:600; text-decoration:none;">See all deals →</a>
+        </div>
+        <div class="section-sub">Hand-picked from this month's best incentives and member-negotiated rates.</div>
+      </div>
+      <div class="deals-grid" id="home-deals"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+      <div class="section-header" style="text-align:center;">
+        <div class="section-label">How It Works</div>
+        <div class="section-title">Go from browsing to signed in days</div>
+      </div>
+      <div class="how-grid">
+        <div class="how-step">
+          <div class="how-num">1</div>
+          <h3>Filter by what matters</h3>
+          <p>Set your target payment, term, mileage, and region to instantly surface deals that fit your life.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-num">2</div>
+          <h3>Compare real numbers</h3>
+          <p>Every listing shows the money factor, residual, and discount off MSRP — no dealer smoke and mirrors.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-num">3</div>
+          <h3>Reserve your deal</h3>
+          <p>Members with Pro access can reserve pre-negotiated deals with one click and take delivery in days.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-num">4</div>
+          <h3>Drive away happy</h3>
+          <p>Share your signed deal with the community and help the next person get an even better number.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="featured-strip">
+    <div class="featured-inner">
+      <h2>Unlock every deal on EzPzLease</h2>
+      <p>Free members see featured deals. Pro and Elite members get full access, deal alerts, and reserved slots.</p>
+      <div class="membership-cards">
+        <div class="mem-card">
+          <div class="mem-name">Free</div>
+          <div class="mem-price">$0<span>/mo</span></div>
+          <ul class="mem-features">
+            <li>Browse featured deals</li>
+            <li>Lease calculator</li>
+            <li>Community forum</li>
+            <li>Leasing 101 guides</li>
+          </ul>
+          <button class="mem-btn">Get started</button>
+        </div>
+        <div class="mem-card featured-mem">
+          <div class="mem-card-badge">Most popular</div>
+          <div class="mem-name">Pro</div>
+          <div class="mem-price">$9<span>/mo</span></div>
+          <ul class="mem-features">
+            <li>All Free features</li>
+            <li>Full deal database</li>
+            <li>Advanced filters</li>
+            <li>Deal alerts by email</li>
+            <li>Reserve pre-negotiated deals</li>
+          </ul>
+          <button class="mem-btn">Start Pro</button>
+        </div>
+        <div class="mem-card">
+          <div class="mem-name">Elite</div>
+          <div class="mem-price">$19<span>/mo</span></div>
+          <ul class="mem-features">
+            <li>All Pro features</li>
+            <li>Money factor data</li>
+            <li>Concierge deal support</li>
+            <li>Early access to new deals</li>
+            <li>Priority reserved slots</li>
+          </ul>
+          <button class="mem-btn">Go Elite</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== DEALS PAGE ===== -->
+<div id="page-deals" class="page">
+
+  <div class="deals-header">
+    <div class="deals-header-inner">
+      <h1>Browse lease deals</h1>
+      <p>Updated daily — filter by payment, term, mileage, make, and region to find your perfect deal.</p>
+      <div class="deals-tabs">
+        <button class="tab active">All deals</button>
+        <button class="tab">EV / Hybrid</button>
+        <button class="tab">Luxury</button>
+        <button class="tab">SUV</button>
+        <button class="tab">Sedan</button>
+        <button class="tab">Pre-Negotiated</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+
+      <div class="filter-bar">
+        <div class="filter-group">
+          <label>Make</label>
+          <select id="f-make">
+            <option value="">All makes</option>
+            <option>BMW</option><option>Mercedes-Benz</option><option>Audi</option>
+            <option>Tesla</option><option>Toyota</option><option>Honda</option>
+            <option>Volvo</option><option>Hyundai</option><option>Genesis</option>
+            <option>Kia</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Body Type</label>
+          <select id="f-type">
+            <option value="">All types</option>
+            <option>SUV</option><option>Sedan</option><option>Coupe</option>
+            <option>Truck</option><option>Convertible</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Term</label>
+          <select id="f-term">
+            <option value="">Any term</option>
+            <option>24 months</option><option>36 months</option><option>48 months</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Mileage/yr</label>
+          <select id="f-miles">
+            <option value="">Any</option>
+            <option>7,500 mi</option><option>10,000 mi</option><option>12,000 mi</option><option>15,000 mi</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Region</label>
+          <select id="f-region">
+            <option value="">Nationwide</option>
+            <option>Northeast</option><option>Southeast</option><option>Midwest</option>
+            <option>Southwest</option><option>West Coast</option>
+          </select>
+        </div>
+        <div class="filter-group payment-range">
+          <label>Max monthly payment</label>
+          <div class="range-row">
+            <input type="range" min="150" max="1200" value="600" step="25" id="f-payment" oninput="document.getElementById('pay-val').textContent='$'+this.value+'/mo'" />
+            <span class="range-val" id="pay-val">$600/mo</span>
+          </div>
+        </div>
+        <button class="filter-btn" onclick="applyFilters()">Apply filters</button>
+      </div>
+
+      <div class="results-meta">
+        <div class="results-count" id="results-count">Showing 9 deals</div>
+        <div class="sort-row">
+          Sort by
+          <select>
+            <option>Best deal score</option>
+            <option>Lowest payment</option>
+            <option>Most popular</option>
+            <option>Newest</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="deals-grid" id="deals-grid"></div>
+
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo">EzPzLease</div>
+  <p>The smarter way to lease a car. © 2026 EzPzLease LLC. All rights reserved.</p>
+  <p style="margin-top:8px;"><a href="#">Privacy</a> &nbsp;·&nbsp; <a href="#">Terms</a> &nbsp;·&nbsp; <a href="#">Contact</a></p>
+</footer>
+
+<script>
+const DEALS = [
+  { make:'BMW', model:'X5 xDrive40i', trim:'Premium Package', payment:549, term:36, miles:'10,000', due:3500, msrp:72000, discount:9, score:87, badges:['Hot','Luxury'], region:'Northeast', ev:false },
+  { make:'Tesla', model:'Model Y', trim:'Long Range AWD', payment:389, term:36, miles:'10,000', due:2500, msrp:49000, discount:6, score:91, badges:['Hot','EV'], region:'Nationwide', ev:true },
+  { make:'Mercedes-Benz', model:'GLC 300', trim:'4MATIC AMG Line', payment:619, term:36, miles:'10,000', due:4000, msrp:68000, discount:11, score:84, badges:['Luxury'], region:'West Coast', ev:false },
+  { make:'Hyundai', model:'Ioniq 6', trim:'SE Standard Range', payment:239, term:36, miles:'12,000', due:1500, msrp:38000, discount:8, score:95, badges:['Hot','EV'], region:'Nationwide', ev:true },
+  { make:'Volvo', model:'XC60 Recharge', trim:'T8 Plus Dark', payment:499, term:36, miles:'10,000', due:3000, msrp:64000, discount:13, score:88, badges:['EV','New'], region:'Nationwide', ev:true },
+  { make:'Audi', model:'Q5 TFSI e', trim:'Prestige', payment:679, term:36, miles:'10,000', due:4500, msrp:74000, discount:9, score:80, badges:['Luxury','EV'], region:'Southeast', ev:true },
+  { make:'Genesis', model:'GV70', trim:'2.5T Sport Prestige', payment:469, term:36, miles:'12,000', due:2800, msrp:58000, discount:14, score:93, badges:['Hot','New'], region:'Midwest', ev:false },
+  { make:'Kia', model:'EV6', trim:'Wind AWD', payment:319, term:36, miles:'10,000', due:2000, msrp:45000, discount:7, score:89, badges:['EV'], region:'Nationwide', ev:true },
+  { make:'Toyota', model:'RAV4 Prime', trim:'XSE Premium', payment:399, term:36, miles:'12,000', due:2500, msrp:48000, discount:5, score:82, badges:['EV'], region:'West Coast', ev:true },
+];
+
+function badgeHTML(b) {
+  const map = { Hot:'badge-hot', EV:'badge-ev', New:'badge-new', Luxury:'badge-luxury' };
+  return `<span class="badge ${map[b]||'badge-new'}">${b}</span>`;
+}
+
+function dealCardHTML(d) {
+  return `
+  <div class="deal-card">
+    <div class="deal-card-header">
+      <div class="deal-badges">${d.badges.map(badgeHTML).join('')}</div>
+      <div class="deal-score">
+        <div class="score-val">${d.score}</div>
+        <div class="score-label">Deal score</div>
+      </div>
+    </div>
+    <div class="deal-card-body">
+      <div class="deal-make">${d.make}</div>
+      <div class="deal-model">${d.model}</div>
+      <div class="deal-trim">${d.trim}</div>
+      <div class="deal-stats">
+        <div class="deal-stat">
+          <div class="deal-stat-val">${d.term} mo</div>
+          <div class="deal-stat-key">Term</div>
+        </div>
+        <div class="deal-stat">
+          <div class="deal-stat-val">${d.miles}</div>
+          <div class="deal-stat-key">Miles/yr</div>
+        </div>
+        <div class="deal-stat">
+          <div class="deal-stat-val">${d.discount}%</div>
+          <div class="deal-stat-key">Off MSRP</div>
+        </div>
+      </div>
+      <div class="deal-payment-row">
+        <div class="deal-payment">
+          <span class="payment-amount">$${d.payment}</span>
+          <span class="payment-unit">/mo</span>
+        </div>
+        <div class="deal-region">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          ${d.region}
+        </div>
+      </div>
+      <button class="btn-deal">View deal details →</button>
+    </div>
+  </div>`;
+}
+
+function renderDeals(deals, containerId) {
+  const el = document.getElementById(containerId);
+  if (el) el.innerHTML = deals.map(dealCardHTML).join('');
+}
+
+function applyFilters() {
+  const make = document.getElementById('f-make').value;
+  const type = document.getElementById('f-type').value;
+  const term = document.getElementById('f-term').value;
+  const region = document.getElementById('f-region').value;
+  const maxPay = parseInt(document.getElementById('f-payment').value);
+  let filtered = DEALS.filter(d => {
+    if (make && d.make !== make) return false;
+    if (region && d.region !== region && d.region !== 'Nationwide') return false;
+    if (term && !term.startsWith(d.term+'')) return false;
+    if (d.payment > maxPay) return false;
+    return true;
+  });
+  renderDeals(filtered, 'deals-grid');
+  document.getElementById('results-count').textContent = `Showing ${filtered.length} deal${filtered.length!==1?'s':''}`;
+}
+
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const navEl = document.getElementById('nav-'+name);
+  if (navEl) navEl.classList.add('active');
+  window.scrollTo(0,0);
+}
+
+renderDeals(DEALS.filter(d=>d.score>=87).slice(0,3), 'home-deals');
+renderDeals(DEALS, 'deals-grid');
+
+document.querySelectorAll('.tab').forEach(t => {
+  t.addEventListener('click', function() {
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    this.classList.add('active');
+    const label = this.textContent;
+    let filtered = DEALS;
+    if (label==='EV / Hybrid') filtered = DEALS.filter(d=>d.ev);
+    else if (label==='Luxury') filtered = DEALS.filter(d=>d.badges.includes('Luxury'));
+    else if (label==='SUV') filtered = DEALS.filter(d=>['X5','GLC','Q5','GV70','XC60','RAV4'].some(m=>d.model.includes(m)));
+    else if (label==='Pre-Negotiated') filtered = DEALS.filter(d=>d.score>=90);
+    renderDeals(filtered, 'deals-grid');
+    document.getElementById('results-count').textContent = `Showing ${filtered.length} deal${filtered.length!==1?'s':''}`;
+  });
+});
+</script>
+</body>
+</html>
