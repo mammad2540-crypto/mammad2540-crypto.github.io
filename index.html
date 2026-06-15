@@ -757,10 +757,10 @@ footer {
 .marquee-inner::after  { right: 0; background: linear-gradient(to left, var(--black-2), transparent); }
 .marquee-track {
   display: flex;
-  gap: 56px;
+  gap: 20px;
   align-items: center;
   width: max-content;
-  animation: marquee-scroll 30s linear infinite;
+  animation: marquee-scroll 32s linear infinite;
 }
 .marquee-track:hover { animation-play-state: paused; }
 .marquee-logo {
@@ -768,12 +768,15 @@ footer {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  opacity: 0.35;
-  filter: brightness(0) invert(1);
-  transition: opacity 0.25s;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 10px;
+  padding: 10px 20px;
+  opacity: 0.82;
+  transition: opacity 0.25s, background 0.25s;
 }
-.marquee-logo:hover { opacity: 0.85; }
-.marquee-logo img { height: 26px; width: auto; max-width: 72px; object-fit: contain; display: block; }
+.marquee-logo:hover { opacity: 1; background: rgba(255,255,255,0.13); }
+.marquee-logo img { height: 28px; width: auto; max-width: 76px; object-fit: contain; display: block; }
 @keyframes marquee-scroll {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
