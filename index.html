@@ -157,9 +157,7 @@ nav {
 
 /* ===== HERO ===== */
 .hero {
-  background:
-    linear-gradient(to bottom, rgba(10,10,10,0.72) 0%, rgba(10,10,10,0.55) 40%, rgba(10,10,10,0.82) 100%),
-    url('https://images.unsplash.com/photo-1519245659620-e859806a8d3b?w=1920&q=85&auto=format&fit=crop') center 40% / cover no-repeat;
+  background: var(--black-2);
   position: relative;
   overflow: hidden;
   padding: 100px 24px 110px;
@@ -170,7 +168,8 @@ nav {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(201,168,76,0.14) 0%, transparent 70%);
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(201,168,76,0.12) 0%, transparent 70%),
+    repeating-linear-gradient(45deg, transparent, transparent 60px, rgba(201,168,76,0.02) 60px, rgba(201,168,76,0.02) 61px);
   pointer-events: none;
 }
 .hero-inner { max-width: 760px; margin: 0 auto; position: relative; }
