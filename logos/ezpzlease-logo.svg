@@ -1,51 +1,61 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 72" fill="none">
   <defs>
-    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%"   stop-color="#E8C96B"/>
+    <linearGradient id="lg_badge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="#F0D170"/>
       <stop offset="50%"  stop-color="#C9A84C"/>
-      <stop offset="100%" stop-color="#8A6820"/>
+      <stop offset="100%" stop-color="#7A5A18"/>
     </linearGradient>
-    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.18"/>
+    <linearGradient id="lg_shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.22"/>
       <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
     </linearGradient>
+    <radialGradient id="lg_hub" cx="45%" cy="35%" r="65%">
+      <stop offset="0%"   stop-color="#F8E080"/>
+      <stop offset="100%" stop-color="#9A7A2E"/>
+    </radialGradient>
   </defs>
 
-  <!-- Badge background -->
-  <rect x="0" y="6" width="60" height="60" rx="14" fill="url(#badge)"/>
-  <!-- Inner shine -->
-  <rect x="0" y="6" width="60" height="28" rx="14" fill="url(#shine)"/>
+  <!-- ── BADGE ── -->
+  <rect x="0" y="6" width="60" height="60" rx="14" fill="url(#lg_badge)"/>
+  <rect x="0" y="6" width="60" height="32" rx="14" fill="url(#lg_shine)"/>
 
-  <!-- Stylized E mark -->
-  <!-- Left vertical bar -->
-  <rect x="13" y="18" width="8" height="34" rx="2.5" fill="#0A0A0A"/>
-  <!-- Top horizontal bar -->
-  <rect x="13" y="18" width="29" height="8"  rx="2.5" fill="#0A0A0A"/>
-  <!-- Bottom horizontal bar -->
-  <rect x="13" y="44" width="29" height="8"  rx="2.5" fill="#0A0A0A"/>
-  <!-- Middle bar -->
-  <rect x="13" y="31" width="21" height="8"  rx="2.5" fill="#0A0A0A"/>
-  <!-- Arrow head at end of middle bar (road pointer) -->
-  <polygon points="35,31 44,35 35,39" fill="#0A0A0A"/>
+  <!-- Car lower body / chassis -->
+  <rect x="7" y="38" width="46" height="12" rx="3" fill="#0A0A0A"/>
 
-  <!-- Wordmark: EzPz -->
-  <text
-    x="76" y="46"
-    font-family="Inter, 'Arial Black', Arial, sans-serif"
-    font-weight="900"
-    font-size="32"
-    fill="#FFFFFF"
-    letter-spacing="-2">EzPz</text>
+  <!-- Cabin (sedan/crossover trapezoid) -->
+  <path d="M 12,38 L 19,20 L 41,20 L 48,38 Z" fill="#0A0A0A"/>
 
-  <!-- Sub-text: LEASE -->
-  <text
-    x="78" y="63"
-    font-family="Inter, Arial, sans-serif"
-    font-weight="700"
-    font-size="12.5"
-    fill="#C9A84C"
-    letter-spacing="5.5">LEASE</text>
+  <!-- Front window -->
+  <path d="M 14.5,37 L 20.5,22 L 28.5,22 L 28.5,37 Z" fill="#B8902A" opacity="0.88"/>
 
-  <!-- Gold accent line between wordmark lines -->
-  <line x1="76" y1="51" x2="212" y2="51" stroke="#C9A84C" stroke-width="0.75" stroke-opacity="0.4"/>
+  <!-- Rear window -->
+  <path d="M 31.5,37 L 31.5,22 L 40,22 L 45.5,37 Z" fill="#B8902A" opacity="0.88"/>
+
+  <!-- Headlight -->
+  <rect x="7" y="40" width="5" height="7" rx="2" fill="#FFF0A0" opacity="0.95"/>
+
+  <!-- Taillight -->
+  <rect x="50" y="40" width="3" height="7" rx="1.5" fill="#C9A84C" opacity="0.75"/>
+
+  <!-- Front wheel -->
+  <circle cx="17"  cy="50" r="9"   fill="#131313" stroke="#D4AA50" stroke-width="2"/>
+  <circle cx="17"  cy="50" r="5"   fill="url(#lg_hub)"/>
+  <circle cx="17"  cy="50" r="2.2" fill="#131313"/>
+
+  <!-- Rear wheel -->
+  <circle cx="43"  cy="50" r="9"   fill="#131313" stroke="#D4AA50" stroke-width="2"/>
+  <circle cx="43"  cy="50" r="5"   fill="url(#lg_hub)"/>
+  <circle cx="43"  cy="50" r="2.2" fill="#131313"/>
+
+  <!-- ── WORDMARK ── -->
+  <text x="76" y="43"
+    font-family="Inter,'Arial Black',Arial,sans-serif"
+    font-weight="900" font-size="30" fill="#FFFFFF" letter-spacing="-2">EzPz</text>
+
+  <line x1="76" y1="50" x2="216" y2="50"
+    stroke="#C9A84C" stroke-width="0.8" stroke-opacity="0.4"/>
+
+  <text x="78" y="63"
+    font-family="Inter,Arial,sans-serif"
+    font-weight="700" font-size="12.5" fill="#C9A84C" letter-spacing="5.5">LEASE</text>
 </svg>
