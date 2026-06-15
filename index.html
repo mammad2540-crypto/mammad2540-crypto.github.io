@@ -408,14 +408,17 @@ nav {
 .mb-option:hover .mb-opt-arrow { background: var(--gold); color: var(--black); }
 
 /* ===== HOW IT WORKS ===== */
-.how-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.how-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
 .how-card {
   background: var(--black-3);
   border: 1px solid var(--gold-border);
   border-radius: var(--radius-lg);
-  padding: 28px 22px;
+  padding: 32px 28px;
   position: relative;
   overflow: hidden;
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
 }
 .how-card::before {
   content: '';
@@ -425,28 +428,32 @@ nav {
   background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
 }
 .how-num {
-  font-size: 42px;
+  font-size: 48px;
   font-weight: 900;
-  color: var(--gold-dim);
-  letter-spacing: -2px;
+  letter-spacing: -3px;
   line-height: 1;
-  margin-bottom: 16px;
-  color: rgba(201,168,76,0.2);
+  color: rgba(201,168,76,0.18);
+  flex-shrink: 0;
+  width: 52px;
+  text-align: right;
+  padding-top: 2px;
 }
+.how-content { flex: 1; }
 .how-icon {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   background: var(--gold-dim);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   color: var(--gold);
+  border: 1px solid var(--gold-border);
 }
-.how-icon svg { width: 20px; height: 20px; }
-.how-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--white); }
-.how-card p { font-size: 13px; color: var(--gray); line-height: 1.6; }
+.how-icon svg { width: 21px; height: 21px; }
+.how-card h3 { font-size: 17px; font-weight: 800; margin-bottom: 8px; color: var(--white); letter-spacing: -0.3px; }
+.how-card p { font-size: 13px; color: var(--gray); line-height: 1.65; }
 
 /* ===== DEAL CARDS ===== */
 .deals-grid {
@@ -469,44 +476,43 @@ nav {
 }
 .deal-card-img {
   position: relative;
-  height: 180px;
+  height: 192px;
   overflow: hidden;
-  background: var(--black-4);
+  background: #F3F2F0;
 }
 .deal-card-img img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
+  padding: 10px 16px 6px;
   transition: transform 0.4s ease;
 }
-.deal-card:hover .deal-card-img img { transform: scale(1.05); }
+.deal-card:hover .deal-card-img img { transform: scale(1.04); }
 .deal-card-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
+  pointer-events: none;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 10px 12px 12px;
+  justify-content: flex-start;
+  align-items: flex-end;
+  padding: 10px 12px;
 }
-.overlay-top-right { display: flex; justify-content: flex-end; }
-.score-chip {
-  background: var(--black);
-  border: 1px solid var(--gold);
-  border-radius: var(--radius-sm);
-  padding: 4px 10px;
-  text-align: center;
-}
-.score-chip .score-val { font-size: 17px; font-weight: 900; color: var(--gold); letter-spacing: -0.5px; line-height: 1.2; }
-.score-chip .score-label { font-size: 8px; color: var(--gray); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-.deal-badges { display: flex; gap: 5px; flex-wrap: wrap; }
+.deal-badges { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 10px; }
 .badge { font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 100px; letter-spacing: 0.3px; }
-.badge-hot { background: rgba(229,62,62,0.2); color: #FC8181; border: 1px solid rgba(229,62,62,0.3); }
-.badge-ev { background: rgba(56,161,105,0.2); color: #68D391; border: 1px solid rgba(56,161,105,0.3); }
-.badge-new { background: var(--gold-dim); color: var(--gold); border: 1px solid var(--gold-border); }
-.badge-luxury { background: rgba(201,168,76,0.12); color: var(--gold-light); border: 1px solid var(--gold-border); }
-.deal-card-body { padding: 18px 20px; }
+.badge-hot { background: rgba(229,62,62,0.15); color: #E53E3E; border: 1px solid rgba(229,62,62,0.35); }
+.badge-ev { background: rgba(56,161,105,0.15); color: #2F855A; border: 1px solid rgba(56,161,105,0.35); }
+.badge-new { background: rgba(201,168,76,0.15); color: #9A7A2E; border: 1px solid rgba(201,168,76,0.35); }
+.badge-luxury { background: rgba(201,168,76,0.1); color: #9A7A2E; border: 1px solid rgba(201,168,76,0.3); }
+.deal-card-body { padding: 16px 20px 18px; }
+/* Lease score bar */
+.lease-score { margin-bottom: 14px; }
+.score-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+.score-label-txt { font-size: 10px; font-weight: 700; color: var(--gray); text-transform: uppercase; letter-spacing: 0.8px; }
+.score-number { font-size: 12px; font-weight: 800; color: var(--gold); }
+.score-bar-track { height: 4px; background: rgba(255,255,255,0.09); border-radius: 2px; overflow: hidden; }
+.score-bar-fill { height: 100%; background: linear-gradient(90deg, var(--gold-dark), var(--gold-light)); border-radius: 2px; transition: width 0.6s ease; }
 .deal-make { font-size: 10px; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 2px; }
 .deal-model { font-size: 19px; font-weight: 800; color: var(--white); letter-spacing: -0.5px; margin-bottom: 3px; }
 .deal-trim { font-size: 12px; color: var(--gray); margin-bottom: 14px; }
@@ -736,6 +742,62 @@ footer {
   margin-top: 8px; transition: opacity 0.15s;
 }
 .modal-submit:hover { opacity: 0.88; }
+
+/* ===== LOGO MARQUEE ===== */
+.logo-marquee-strip {
+  background: var(--black-2);
+  border-bottom: 1px solid var(--gold-border);
+  padding: 20px 0;
+  overflow: hidden;
+}
+.marquee-inner { position: relative; overflow: hidden; }
+.marquee-inner::before, .marquee-inner::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; width: 100px;
+  z-index: 2;
+  pointer-events: none;
+}
+.marquee-inner::before { left: 0; background: linear-gradient(to right, var(--black-2), transparent); }
+.marquee-inner::after  { right: 0; background: linear-gradient(to left, var(--black-2), transparent); }
+.marquee-track {
+  display: flex;
+  gap: 56px;
+  align-items: center;
+  width: max-content;
+  animation: marquee-scroll 30s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+.marquee-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  opacity: 0.35;
+  filter: brightness(0) invert(1);
+  transition: opacity 0.25s;
+}
+.marquee-logo:hover { opacity: 0.85; }
+.marquee-logo img { height: 26px; width: auto; max-width: 72px; object-fit: contain; display: block; }
+@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ===== FOOTER ENHANCEMENTS ===== */
+.footer-tagline { font-size: 12px; color: var(--gold); font-weight: 500; margin-top: 3px; opacity: 0.8; letter-spacing: 0.2px; }
+.footer-right { display: flex; flex-direction: column; align-items: flex-end; gap: 14px; }
+.footer-social { display: flex; gap: 8px; }
+.social-icon {
+  width: 32px; height: 32px;
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gray); text-decoration: none;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.social-icon:hover { color: var(--gold); border-color: var(--gold); background: var(--gold-dim); }
+.social-icon svg { width: 15px; height: 15px; }
 </style>
 </head>
 <body>
@@ -870,6 +932,13 @@ footer {
     </div>
   </div>
 
+  <!-- LOGO MARQUEE -->
+  <div class="logo-marquee-strip">
+    <div class="marquee-inner">
+      <div class="marquee-track" id="marquee-track"></div>
+    </div>
+  </div>
+
   <!-- STATS -->
   <div class="stats-bar">
     <div class="stats-inner">
@@ -901,32 +970,44 @@ footer {
       </div>
       <div class="how-grid">
         <div class="how-card">
-          <div class="how-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <div class="how-num">01</div>
+          <div class="how-content">
+            <div class="how-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            </div>
+            <h3>Browse real deals</h3>
+            <p>Filter by payment, term, mileage, and region. Every listing shows the full breakdown — no hidden fees.</p>
           </div>
-          <h3>Browse real deals</h3>
-          <p>Filter by payment, term, mileage, and region. Every listing shows the full breakdown — no hidden fees.</p>
         </div>
         <div class="how-card">
-          <div class="how-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div class="how-num">02</div>
+          <div class="how-content">
+            <div class="how-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3>We beat any quote</h3>
+            <p>Show us a competing offer and we'll match or beat it. Our volume means you always get the best rate.</p>
           </div>
-          <h3>We beat any quote</h3>
-          <p>Show us a competing offer and we'll match or beat it. Our volume means you always get the best rate.</p>
         </div>
         <div class="how-card">
-          <div class="how-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <div class="how-num">03</div>
+          <div class="how-content">
+            <div class="how-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <h3>Reserve your deal</h3>
+            <p>Lock in pre-negotiated rates with one click. Pro and Elite members get priority access and reserved slots.</p>
           </div>
-          <h3>Reserve your deal</h3>
-          <p>Lock in pre-negotiated rates with one click. Pro and Elite members get priority access and reserved slots.</p>
         </div>
         <div class="how-card">
-          <div class="how-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h11a2 2 0 012 2v3m-4 11l2 2 4-4m1-8a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          <div class="how-num">04</div>
+          <div class="how-content">
+            <div class="how-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h11a2 2 0 012 2v3m-4 11l2 2 4-4m1-8a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            </div>
+            <h3>Door delivery</h3>
+            <p>We deliver your car directly to you. Sign, drive, done. Never set foot in a dealership again.</p>
           </div>
-          <h3>Door delivery</h3>
-          <p>We deliver your car directly to you. Sign, drive, done. Never set foot in a dealership again.</p>
         </div>
       </div>
     </div>
@@ -1102,13 +1183,27 @@ footer {
   <div class="footer-inner">
     <div>
       <div class="footer-logo-text">EzPz<span>Lease</span></div>
-      <div class="footer-copy" style="margin-top:4px;">© 2026 EzPzLease LLC. All rights reserved.</div>
+      <div class="footer-tagline">Skip the dealership. Drive the dream.</div>
+      <div class="footer-copy" style="margin-top:6px;">© 2026 EzPzLease LLC. All rights reserved.</div>
     </div>
-    <div class="footer-links">
-      <a href="#">Privacy</a>
-      <a href="#">Terms</a>
-      <a href="#" onclick="openModal('quote-modal')">Contact Us</a>
-      <a href="tel:+18005551234">1-800-555-1234</a>
+    <div class="footer-right">
+      <div class="footer-social">
+        <a href="#" class="social-icon" title="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="#" class="social-icon" title="X / Twitter">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="#" class="social-icon" title="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+      </div>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#" onclick="openModal('quote-modal')">Contact Us</a>
+        <a href="tel:+18005551234">1-800-555-1234</a>
+      </div>
     </div>
   </div>
 </footer>
@@ -1202,12 +1297,6 @@ function dealCardHTML(d) {
     <div class="deal-card-img">
       <img src="${d.img}" alt="${d.make} ${d.model}" loading="lazy" />
       <div class="deal-card-overlay">
-        <div class="overlay-top-right">
-          <div class="score-chip">
-            <div class="score-val">${d.score}</div>
-            <div class="score-label">Score</div>
-          </div>
-        </div>
         <div class="deal-badges">${d.badges.map(badgeHTML).join('')}</div>
       </div>
     </div>
@@ -1215,6 +1304,15 @@ function dealCardHTML(d) {
       <div class="deal-make">${d.make}</div>
       <div class="deal-model">${d.model}</div>
       <div class="deal-trim">${d.trim}</div>
+      <div class="lease-score">
+        <div class="score-header">
+          <span class="score-label-txt">Lease Score</span>
+          <span class="score-number">${d.score}/100</span>
+        </div>
+        <div class="score-bar-track">
+          <div class="score-bar-fill" style="width:${d.score}%"></div>
+        </div>
+      </div>
       <div class="deal-stats">
         <div class="deal-stat">
           <div class="deal-stat-val">${d.term} mo</div>
@@ -1288,8 +1386,21 @@ function showPage(name) {
   window.scrollTo(0,0);
 }
 
+/* --- MARQUEE --- */
+function buildMarquee() {
+  const track = document.getElementById('marquee-track');
+  if (!track) return;
+  const logos = [...MAKES, ...MAKES];
+  track.innerHTML = logos.map(name => `
+    <div class="marquee-logo">
+      <img src="${LOGO_FILES[name]}" alt="${name}" />
+    </div>
+  `).join('');
+}
+
 /* --- INIT --- */
 buildMakes();
+buildMarquee();
 renderDeals(DEALS.filter(d=>d.score>=87).slice(0,3), 'home-deals');
 renderDeals(DEALS, 'deals-grid');
 </script>
