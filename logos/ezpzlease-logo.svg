@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 72" fill="none">
+  <defs>
+    <linearGradient id="badge" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="#E8C96B"/>
+      <stop offset="50%"  stop-color="#C9A84C"/>
+      <stop offset="100%" stop-color="#8A6820"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Badge background -->
+  <rect x="0" y="6" width="60" height="60" rx="14" fill="url(#badge)"/>
+  <!-- Inner shine -->
+  <rect x="0" y="6" width="60" height="28" rx="14" fill="url(#shine)"/>
+
+  <!-- Stylized E mark -->
+  <!-- Left vertical bar -->
+  <rect x="13" y="18" width="8" height="34" rx="2.5" fill="#0A0A0A"/>
+  <!-- Top horizontal bar -->
+  <rect x="13" y="18" width="29" height="8"  rx="2.5" fill="#0A0A0A"/>
+  <!-- Bottom horizontal bar -->
+  <rect x="13" y="44" width="29" height="8"  rx="2.5" fill="#0A0A0A"/>
+  <!-- Middle bar -->
+  <rect x="13" y="31" width="21" height="8"  rx="2.5" fill="#0A0A0A"/>
+  <!-- Arrow head at end of middle bar (road pointer) -->
+  <polygon points="35,31 44,35 35,39" fill="#0A0A0A"/>
+
+  <!-- Wordmark: EzPz -->
+  <text
+    x="76" y="46"
+    font-family="Inter, 'Arial Black', Arial, sans-serif"
+    font-weight="900"
+    font-size="32"
+    fill="#FFFFFF"
+    letter-spacing="-2">EzPz</text>
+
+  <!-- Sub-text: LEASE -->
+  <text
+    x="78" y="63"
+    font-family="Inter, Arial, sans-serif"
+    font-weight="700"
+    font-size="12.5"
+    fill="#C9A84C"
+    letter-spacing="5.5">LEASE</text>
+
+  <!-- Gold accent line between wordmark lines -->
+  <line x1="76" y1="51" x2="212" y2="51" stroke="#C9A84C" stroke-width="0.75" stroke-opacity="0.4"/>
+</svg>
