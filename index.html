@@ -820,7 +820,7 @@ footer {
     <div class="form-group"><label>Phone</label><input type="tel" placeholder="(555) 000-0000" /></div>
     <div class="form-group">
       <label>Desired Make</label>
-      <select><option value="">Any make</option><option>BMW</option><option>Mercedes-Benz</option><option>Audi</option><option>Lexus</option><option>Tesla</option><option>Toyota</option><option>Honda</option><option>Volvo</option><option>Genesis</option><option>Kia</option></select>
+      <select><option value="">Any make</option><option>Mercedes-Benz</option><option>Toyota</option><option>Honda</option><option>Kia</option><option>Genesis</option><option>Lexus</option><option>Land Rover</option></select>
     </div>
     <div class="form-group"><label>Monthly Budget</label><input type="text" placeholder="e.g. $400–$600/mo" /></div>
     <button class="modal-submit">Submit Application →</button>
@@ -1164,9 +1164,8 @@ footer {
           <label>Make</label>
           <select id="f-make">
             <option value="">All makes</option>
-            <option>BMW</option><option>Mercedes-Benz</option><option>Audi</option>
-            <option>Tesla</option><option>Toyota</option><option>Honda</option>
-            <option>Volvo</option><option>Hyundai</option><option>Genesis</option><option>Kia</option>
+            <option>Mercedes-Benz</option><option>Toyota</option><option>Honda</option>
+            <option>Kia</option><option>Genesis</option><option>Lexus</option><option>Land Rover</option>
           </select>
         </div>
         <div class="filter-group">
@@ -1180,7 +1179,7 @@ footer {
           <label>Term</label>
           <select id="f-term">
             <option value="">Any term</option>
-            <option>24 months</option><option>36 months</option><option>48 months</option>
+            <option>24 months</option><option>36 months</option><option>39 months</option>
           </select>
         </div>
         <div class="filter-group">
@@ -1271,15 +1270,45 @@ const MAKES = [
 ];
 
 const DEALS = [
-  { make:'BMW', model:'X5 xDrive40i', trim:'Premium Package', payment:549, term:36, miles:'10,000', due:3500, msrp:72000, discount:9, score:87, badges:['Hot','Luxury'], region:'Northeast', ev:false, img:'images/bmw-x5.jpg' },
-  { make:'Tesla', model:'Model Y', trim:'Long Range AWD', payment:389, term:36, miles:'10,000', due:2500, msrp:49000, discount:6, score:91, badges:['Hot','EV'], region:'Nationwide', ev:true, img:'images/tesla-modely.jpg' },
-  { make:'Mercedes-Benz', model:'GLC 300', trim:'4MATIC AMG Line', payment:619, term:36, miles:'10,000', due:4000, msrp:68000, discount:11, score:84, badges:['Luxury'], region:'West Coast', ev:false, img:'images/mercedes-glc.jpg' },
-  { make:'Hyundai', model:'Ioniq 6', trim:'SE Standard Range', payment:239, term:36, miles:'12,000', due:1500, msrp:38000, discount:8, score:95, badges:['Hot','EV'], region:'Nationwide', ev:true, img:'images/hyundai-ioniq6.jpg' },
-  { make:'Volvo', model:'XC60 Recharge', trim:'T8 Plus Dark', payment:499, term:36, miles:'10,000', due:3000, msrp:64000, discount:13, score:88, badges:['EV','New'], region:'Nationwide', ev:true, img:'images/volvo-xc60.jpg' },
-  { make:'Audi', model:'Q5 TFSI e', trim:'Prestige', payment:679, term:36, miles:'10,000', due:4500, msrp:74000, discount:9, score:80, badges:['Luxury','EV'], region:'Southeast', ev:true, img:'images/audi-q5.jpg' },
-  { make:'Genesis', model:'GV70', trim:'2.5T Sport Prestige', payment:469, term:36, miles:'12,000', due:2800, msrp:58000, discount:14, score:93, badges:['Hot','New'], region:'Midwest', ev:false, img:'images/genesis-gv70.jpg' },
-  { make:'Kia', model:'EV6', trim:'Wind AWD', payment:319, term:36, miles:'10,000', due:2000, msrp:45000, discount:7, score:89, badges:['EV'], region:'Nationwide', ev:true, img:'images/kia-ev6.jpg' },
-  { make:'Toyota', model:'RAV4 Prime', trim:'XSE Premium', payment:399, term:36, miles:'12,000', due:2500, msrp:48000, discount:5, score:82, badges:['EV'], region:'West Coast', ev:true, img:'images/toyota-rav4.jpg' },
+  // Mercedes-Benz
+  { make:'Mercedes-Benz', model:'GLB-Class', trim:'GLB250', payment:219, term:24, miles:'7,500', due:2999, msrp:48000, discount:9, score:96, badges:['Hot','Luxury'], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1780594746900-bbda73b5abe1.webp' },
+  { make:'Mercedes-Benz', model:'GLA-Class', trim:'GLA250', payment:239, term:24, miles:'7,500', due:2999, msrp:45000, discount:8, score:88, badges:['Luxury'], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1780594603276-c1b7d48206d1.webp' },
+  { make:'Mercedes-Benz', model:'GLC-Class', trim:'GLC300', payment:329, term:24, miles:'7,500', due:2999, msrp:55000, discount:8, score:84, badges:['Luxury'], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1780437589157-d8f9a77e90c8.webp' },
+  { make:'Mercedes-Benz', model:'C-Class', trim:'C300', payment:349, term:24, miles:'7,500', due:2999, msrp:50000, discount:7, score:83, badges:['Luxury'], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1780594851381-89a96e1285e1.webp' },
+  // Toyota
+  { make:'Toyota', model:'Tacoma', trim:'SR5 TRD', payment:179, term:24, miles:'12,000', due:3000, msrp:43000, discount:6, score:94, badges:['Hot'], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1780434748046-e6c14c441053.webp' },
+  { make:'Toyota', model:'Camry', trim:'SE Hybrid', payment:279, term:39, miles:'10,000', due:3000, msrp:30000, discount:5, score:86, badges:['Hybrid'], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1780434768999-ae7e54f8b537.webp' },
+  // Kia
+  { make:'Kia', model:'K4', trim:'LXS', payment:259, term:36, miles:'10,000', due:1999, msrp:23000, discount:7, score:91, badges:['Hot','New'], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1780599132874-84f985ab3eb1.webp' },
+  { make:'Kia', model:'K4', trim:'GT-Line', payment:335, term:36, miles:'10,000', due:1999, msrp:26000, discount:6, score:83, badges:['New'], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1780599021369-b1709684caf2.webp' },
+  { make:'Kia', model:'Niro', trim:'EX Hybrid', payment:329, term:36, miles:'10,000', due:1999, msrp:31000, discount:7, score:86, badges:['Hybrid'], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1781109065686-3b8d9ef85db7.webp' },
+  { make:'Kia', model:'Sportage', trim:'LX', payment:319, term:36, miles:'10,000', due:1998, msrp:30000, discount:6, score:85, badges:[], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1780598635684-eac9fb554592.webp' },
+  { make:'Kia', model:'Sportage', trim:'LX Hybrid', payment:339, term:36, miles:'10,000', due:1999, msrp:32000, discount:6, score:82, badges:['Hybrid'], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1781109229395-7247c6be4902.webp' },
+  { make:'Kia', model:'Sportage', trim:'PHEV X-Line', payment:389, term:36, miles:'10,000', due:1999, msrp:36000, discount:6, score:80, badges:['EV'], region:'West Coast', ev:true, img:'https://formula-autolease.com/uploads/1780599458484-f725fad471af.webp' },
+  { make:'Kia', model:'Sorento', trim:'LX', payment:359, term:36, miles:'10,000', due:1999, msrp:32000, discount:5, score:79, badges:[], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1780596158270-108b2077dfe3.webp' },
+  { make:'Kia', model:'Sorento', trim:'EX Hybrid', payment:439, term:36, miles:'10,000', due:1999, msrp:38000, discount:5, score:78, badges:['Hybrid'], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1780597666203-64eaa630ddb5.webp' },
+  { make:'Kia', model:'Carnival', trim:'LXS', payment:469, term:36, miles:'10,000', due:1999, msrp:39000, discount:5, score:76, badges:[], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1780598893619-043ecbd8e530.webp' },
+  { make:'Kia', model:'Carnival', trim:'LXS Hybrid', payment:485, term:36, miles:'10,000', due:2999, msrp:42000, discount:5, score:74, badges:['Hybrid'], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1781109478342-07edc33d6e02.webp' },
+  // Genesis
+  { make:'Genesis', model:'G70', trim:'2.5T', payment:299, term:24, miles:'7,500', due:2499, msrp:45000, discount:8, score:85, badges:['Luxury'], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1780941137551-3b84a8b5bf1c.webp' },
+  { make:'Genesis', model:'GV70', trim:'2.5T', payment:399, term:24, miles:'7,500', due:2499, msrp:52000, discount:7, score:82, badges:['Luxury'], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1780941442170-ed72ca7fe8e2.webp' },
+  { make:'Genesis', model:'GV80', trim:'2.5T', payment:499, term:24, miles:'7,500', due:2999, msrp:62000, discount:6, score:75, badges:['Luxury'], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1780941249875-1659cb72a397.webp' },
+  // Lexus
+  { make:'Lexus', model:'IS', trim:'350 F Sport Design', payment:489, term:36, miles:'7,500', due:2999, msrp:50000, discount:5, score:74, badges:['Luxury'], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1780940616381-6a6c1850e802.webp' },
+  { make:'Lexus', model:'RX', trim:'350 Base', payment:549, term:36, miles:'7,500', due:2999, msrp:55000, discount:5, score:71, badges:['Luxury'], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1780940976531-66dc5b5fbedd.webp' },
+  { make:'Lexus', model:'TX', trim:'350 Base', payment:569, term:36, miles:'7,500', due:2999, msrp:58000, discount:5, score:70, badges:['Luxury'], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1780940739716-af7de66da906.webp' },
+  // Honda
+  { make:'Honda', model:'Civic', trim:'Sport', payment:219, term:36, miles:'7,500', due:2995, msrp:26000, discount:6, score:93, badges:['Hot'], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1780445136562-62a750021241.webp' },
+  { make:'Honda', model:'Accord', trim:'LX', payment:229, term:36, miles:'7,500', due:2995, msrp:28000, discount:6, score:90, badges:[], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1780444905022-bf7f8d8683c8.webp' },
+  { make:'Honda', model:'HR-V', trim:'LX', payment:239, term:36, miles:'7,500', due:2995, msrp:25000, discount:5, score:89, badges:[], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1780445489943-607e423382d3.webp' },
+  { make:'Honda', model:'Civic Si', trim:'Sport', payment:249, term:36, miles:'7,500', due:2995, msrp:29000, discount:6, score:88, badges:[], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1780444969499-d037cb862304.webp' },
+  { make:'Honda', model:'Accord', trim:'Hybrid Sport', payment:279, term:39, miles:'7,500', due:2995, msrp:33000, discount:6, score:87, badges:['Hybrid'], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1780445167922-2afea106ac60.webp' },
+  { make:'Honda', model:'Prologue', trim:'EX AWD', payment:295, term:36, miles:'7,500', due:2995, msrp:50000, discount:8, score:88, badges:['EV'], region:'West Coast', ev:true, img:'https://formula-autolease.com/uploads/1780446740461-b6b8209fb352.webp' },
+  { make:'Honda', model:'CR-V', trim:'Hybrid Sport L', payment:369, term:36, miles:'7,500', due:2995, msrp:40000, discount:5, score:81, badges:['Hybrid'], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1780445271433-9d6ca024b728.webp' },
+  { make:'Honda', model:'Pilot', trim:'Sport', payment:399, term:36, miles:'7,500', due:3500, msrp:45000, discount:6, score:80, badges:[], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1780444676210-fd9ff5c659d3.webp' },
+  { make:'Honda', model:'Odyssey', trim:'Touring', payment:449, term:36, miles:'7,500', due:2995, msrp:48000, discount:5, score:77, badges:[], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1780445575285-6a2ab0538444.webp' },
+  // Land Rover
+  { make:'Land Rover', model:'Range Rover Sport', trim:'SE', payment:1149, term:24, miles:'7,500', due:4999, msrp:85000, discount:4, score:62, badges:['Luxury'], region:'West Coast', ev:false, img:'https://formula-autolease.com/uploads/1780941598620-02f1b252a115.webp' },
 ];
 
 /* --- MAKES GRID --- */
@@ -1330,7 +1359,7 @@ document.querySelectorAll('.modal-overlay').forEach(m => {
 
 /* --- DEAL CARDS --- */
 function badgeHTML(b) {
-  const map = { Hot:'badge-hot', EV:'badge-ev', New:'badge-new', Luxury:'badge-luxury' };
+  const map = { Hot:'badge-hot', EV:'badge-ev', New:'badge-new', Luxury:'badge-luxury', Hybrid:'badge-ev' };
   return `<span class="badge ${map[b]||'badge-new'}">${b}</span>`;
 }
 
@@ -1413,7 +1442,7 @@ function filterTab(btn, type) {
   let filtered = DEALS;
   if (type==='ev')      filtered = DEALS.filter(d=>d.ev);
   if (type==='luxury')  filtered = DEALS.filter(d=>d.badges.includes('Luxury'));
-  if (type==='suv')     filtered = DEALS.filter(d=>['X5','GLC','Q5','GV70','XC60','RAV4'].some(m=>d.model.includes(m)));
+  if (type==='suv')     filtered = DEALS.filter(d=>['GLC','GLA','GLB','GV70','GV80','RX','TX','Sportage','Sorento','Pilot','Prologue','HR-V','CR-V','Range Rover'].some(m=>d.model.includes(m)));
   if (type==='top')     filtered = DEALS.filter(d=>d.score>=90);
   renderDeals(filtered, 'deals-grid');
   document.getElementById('results-count').textContent = `Showing ${filtered.length} deal${filtered.length!==1?'s':''}`;
