@@ -892,43 +892,39 @@ footer {
       <div class="logo-mark">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60" width="38" height="38" fill="none">
           <defs>
-            <linearGradient id="nb" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%"   stop-color="#F0D170"/>
-              <stop offset="50%"  stop-color="#C9A84C"/>
-              <stop offset="100%" stop-color="#7A5A18"/>
+            <linearGradient id="sc_bg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#E8C84A"/>
+              <stop offset="100%" stop-color="#9A6E10"/>
             </linearGradient>
-            <linearGradient id="ns" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%"   stop-color="#FFFFFF" stop-opacity="0.22"/>
-              <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
-            </linearGradient>
-            <radialGradient id="nh" cx="45%" cy="35%" r="65%">
-              <stop offset="0%"   stop-color="#F8E080"/>
-              <stop offset="100%" stop-color="#9A7A2E"/>
-            </radialGradient>
           </defs>
-          <!-- Badge -->
-          <rect width="60" height="60" rx="14" fill="url(#nb)"/>
-          <rect width="60" height="32" rx="14" fill="url(#ns)"/>
-          <!-- Car body (chassis) -->
-          <rect x="7" y="32" width="46" height="12" rx="3" fill="#0A0A0A"/>
-          <!-- Cabin -->
-          <path d="M 12,32 L 19,14 L 41,14 L 48,32 Z" fill="#0A0A0A"/>
-          <!-- Front window -->
-          <path d="M 14.5,31 L 20.5,16 L 28.5,16 L 28.5,31 Z" fill="#B8902A" opacity="0.88"/>
-          <!-- Rear window -->
-          <path d="M 31.5,31 L 31.5,16 L 40,16 L 45.5,31 Z" fill="#B8902A" opacity="0.88"/>
-          <!-- Headlight -->
-          <rect x="7" y="34" width="5" height="7" rx="2" fill="#FFF0A0" opacity="0.95"/>
-          <!-- Taillight -->
-          <rect x="50" y="34" width="3" height="7" rx="1.5" fill="#C9A84C" opacity="0.75"/>
-          <!-- Front wheel -->
-          <circle cx="17" cy="44" r="9"   fill="#131313" stroke="#D4AA50" stroke-width="2"/>
-          <circle cx="17" cy="44" r="5"   fill="url(#nh)"/>
-          <circle cx="17" cy="44" r="2.2" fill="#131313"/>
-          <!-- Rear wheel -->
-          <circle cx="43" cy="44" r="9"   fill="#131313" stroke="#D4AA50" stroke-width="2"/>
-          <circle cx="43" cy="44" r="5"   fill="url(#nh)"/>
-          <circle cx="43" cy="44" r="2.2" fill="#131313"/>
+          <!-- Gold square -->
+          <rect width="60" height="60" rx="5" fill="url(#sc_bg)"/>
+          <!-- Wheels drawn first so body overlaps for wheel-arch effect -->
+          <circle cx="16" cy="44" r="8"   fill="#0D0D0D" stroke="#C9A84C" stroke-width="1.8"/>
+          <circle cx="16" cy="44" r="4"   fill="#222"/>
+          <circle cx="16" cy="44" r="1.5" fill="#0D0D0D"/>
+          <circle cx="45" cy="44" r="8"   fill="#0D0D0D" stroke="#C9A84C" stroke-width="1.8"/>
+          <circle cx="45" cy="44" r="4"   fill="#222"/>
+          <circle cx="45" cy="44" r="1.5" fill="#0D0D0D"/>
+          <!-- Body sill -->
+          <rect x="4" y="33" width="52" height="9" rx="2" fill="#0A0A0A"/>
+          <!-- Front splitter -->
+          <path d="M 4,34 L 2,37 L 2,42 L 4,42 Z" fill="#0A0A0A"/>
+          <!-- Rear diffuser -->
+          <path d="M 56,34 L 58,37 L 58,40 L 56,40 Z" fill="#0A0A0A"/>
+          <!-- Cabin — low swept sports car roofline -->
+          <path d="M 15,33 L 21,18 L 43,18 L 49,33 Z" fill="#0A0A0A"/>
+          <!-- Windshield glass -->
+          <path d="M 17,32 L 22,19 L 31,19 L 31,32 Z" fill="#1C1C1C"/>
+          <!-- Rear window glass -->
+          <path d="M 33,32 L 33,19 L 41,19 L 47,32 Z" fill="#1C1C1C"/>
+          <!-- Rear wing / spoiler -->
+          <rect x="45" y="14" width="12" height="2.5" rx="1"  fill="#0A0A0A"/>
+          <rect x="55" y="14" width="2"  height="4.5" rx="0.8" fill="#0A0A0A"/>
+          <!-- LED headlight strip -->
+          <rect x="4"  y="35" width="6" height="1.5" rx="0.7" fill="#FFFDE0" opacity="0.95"/>
+          <!-- LED taillight strip -->
+          <rect x="50" y="35" width="6" height="1.5" rx="0.7" fill="#FF2222" opacity="0.9"/>
         </svg>
       </div>
       <span class="logo-text">EzPz<span>Lease</span></span>
