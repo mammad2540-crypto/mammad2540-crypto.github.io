@@ -932,9 +932,9 @@ footer {
     <ul class="nav-links">
       <li><a href="#" id="nav-home" class="active" onclick="showPage('home')">Home</a></li>
       <li><a href="#" id="nav-deals" onclick="showPage('deals')">Browse Deals</a></li>
-      <li><a href="#">Calculator</a></li>
+      <li><a href="#" id="nav-services" onclick="showPage('services')">Services</a></li>
+      <li><a href="#" id="nav-refer" onclick="showPage('refer')">Refer &amp; Earn</a></li>
       <li><a href="#">Leasing 101</a></li>
-      <li><a href="#">Community</a></li>
     </ul>
     <div class="nav-actions">
       <a href="tel:+18005551234" class="contact-icon" title="Call us">
@@ -1219,6 +1219,185 @@ footer {
 </div>
 
 <!-- FOOTER -->
+<!-- ===== SERVICES PAGE ===== -->
+<div id="page-services" class="page">
+  <div class="deals-header">
+    <div class="deals-header-inner">
+      <h1>Our Services</h1>
+      <p>From the first call to the keys in your hand — we handle everything.</p>
+    </div>
+  </div>
+  <div class="section">
+    <div class="container">
+      <div class="how-grid">
+
+        <div class="how-card">
+          <div>
+            <div class="how-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10H3M16 2l5 8-5 8M8 2L3 10l5 8"/></svg>
+            </div>
+            <h3>New Car Leasing &amp; Financing</h3>
+            <p>Competitive lease and finance deals on all makes and models, brand new. We source the best rates so you don't have to.</p>
+          </div>
+        </div>
+
+        <div class="how-card">
+          <div>
+            <div class="how-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            </div>
+            <h3>Personalized Car Sourcing</h3>
+            <p>Tell us the exact make, model, trim, and color. We locate it, negotiate the price, and deliver it — no dealership visits needed.</p>
+          </div>
+        </div>
+
+        <div class="how-card">
+          <div>
+            <div class="how-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <h3>Beat Any Quote</h3>
+            <p>Have a written dealer quote? Send it to us and we will beat it — guaranteed. Our buying power wins every time.</p>
+          </div>
+        </div>
+
+        <div class="how-card">
+          <div>
+            <div class="how-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h6l1 5v3h-7V8zM5.5 19a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM19.5 19a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"/></svg>
+            </div>
+            <h3>Door-to-Door Delivery</h3>
+            <p>Skip the dealership entirely. We bring your new car to your home or office anywhere in our service area.</p>
+          </div>
+        </div>
+
+        <div class="how-card">
+          <div>
+            <div class="how-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4m0 0L3 8m4-4l4 4M17 8v12m0 0l4-4m-4 4l-4-4"/></svg>
+            </div>
+            <h3>Trade-In Assistance</h3>
+            <p>We provide top-dollar valuations for your current vehicle and apply it directly toward your new one — fast and hassle-free.</p>
+          </div>
+        </div>
+
+        <div class="how-card">
+          <div>
+            <div class="how-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+            </div>
+            <h3>Credit Approval Help</h3>
+            <p>Excellent credit or rebuilding — we work with top-tier lenders to get you approved at the best possible rate.</p>
+          </div>
+        </div>
+
+        <div class="how-card">
+          <div>
+            <div class="how-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            </div>
+            <h3>Lease-End &amp; Buyback</h3>
+            <p>Coming up on your lease end? We handle the return, buyout, or swap into your next vehicle with zero stress.</p>
+          </div>
+        </div>
+
+        <div class="how-card">
+          <div>
+            <div class="how-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-4 0v2M8 7V5a2 2 0 00-4 0v2"/></svg>
+            </div>
+            <h3>Fleet &amp; Business</h3>
+            <p>Volume pricing and fleet management for companies, entrepreneurs, and business owners who need multiple vehicles.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="cta-strip">
+    <div class="cta-inner">
+      <div class="cta-text">
+        <div class="cta-title">Ready to get started?</div>
+        <div class="cta-sub">Tell us the car. We handle the rest.</div>
+      </div>
+      <div class="cta-actions">
+        <button class="btn-gold" onclick="openModal('quote-modal')">Get a Free Quote</button>
+        <button class="btn-outline" onclick="openModal('apply-modal')">Apply Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== REFER PAGE ===== -->
+<div id="page-refer" class="page">
+  <div class="deals-header">
+    <div class="deals-header-inner">
+      <h1>Refer &amp; Earn</h1>
+      <p>Send us someone shopping for their next car. Get paid when they drive away.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="container">
+
+      <!-- Reward tiers -->
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-bottom:52px;">
+
+        <div class="how-card" style="flex-direction:column; align-items:center; text-align:center; padding:36px 24px;">
+          <div style="font-size:42px; font-weight:900; color:var(--gold); letter-spacing:-2px; margin-bottom:8px;">$100</div>
+          <div style="font-size:15px; font-weight:700; color:var(--white); margin-bottom:8px;">Per Referral</div>
+          <div style="font-size:13px; color:var(--gray); line-height:1.6;">Every time a referral leases or finances through us, you receive a $100 check. No cap.</div>
+        </div>
+
+        <div class="how-card" style="flex-direction:column; align-items:center; text-align:center; padding:36px 24px;">
+          <div style="font-size:42px; font-weight:900; color:var(--gold); letter-spacing:-2px; margin-bottom:8px;">$500</div>
+          <div style="font-size:15px; font-weight:700; color:var(--white); margin-bottom:8px;">Bonus Reward</div>
+          <div style="font-size:13px; color:var(--gray); line-height:1.6;">Send 5 referrals who close within 3 months and earn a $500 bonus — $1,000 total.</div>
+        </div>
+
+        <div class="how-card" style="flex-direction:column; align-items:center; text-align:center; padding:36px 24px;">
+          <div style="font-size:42px; font-weight:900; color:var(--gold); letter-spacing:-2px; margin-bottom:8px;">∞</div>
+          <div style="font-size:15px; font-weight:700; color:var(--white); margin-bottom:8px;">No Limit</div>
+          <div style="font-size:13px; color:var(--gray); line-height:1.6;">Refer as many people as you want. There is no cap, no fine print, no expiration.</div>
+        </div>
+
+      </div>
+
+      <!-- Referral Form -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px; max-width:860px; margin:0 auto;">
+
+        <div>
+          <div class="section-label" style="margin-bottom:16px;">Your Details</div>
+          <div class="form-group"><label>First Name</label><input type="text" placeholder="First name" /></div>
+          <div class="form-group"><label>Last Name</label><input type="text" placeholder="Last name" /></div>
+          <div class="form-group"><label>Phone</label><input type="tel" placeholder="(555) 000-0000" /></div>
+          <div class="form-group"><label>Email</label><input type="email" placeholder="you@email.com" /></div>
+        </div>
+
+        <div>
+          <div class="section-label" style="margin-bottom:16px;">Who You're Referring</div>
+          <div class="form-group"><label>First Name</label><input type="text" placeholder="Their first name" /></div>
+          <div class="form-group"><label>Last Name</label><input type="text" placeholder="Their last name" /></div>
+          <div class="form-group"><label>Phone</label><input type="tel" placeholder="(555) 000-0000" /></div>
+          <div class="form-group"><label>Email</label><input type="email" placeholder="their@email.com" /></div>
+        </div>
+
+      </div>
+
+      <div style="max-width:860px; margin:20px auto 0;">
+        <div class="form-group"><label>Anything else? <span style="color:var(--gray);font-weight:400;">(optional)</span></label><textarea placeholder="Notes about your referral…" rows="3" style="width:100%;background:var(--black-3);border:1px solid var(--gold-border);border-radius:var(--radius-md);color:var(--white);padding:12px 14px;font-family:inherit;font-size:14px;resize:vertical;"></textarea></div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px;">
+          <input type="checkbox" id="refer-consent" style="width:16px;height:16px;accent-color:var(--gold);" />
+          <label for="refer-consent" style="font-size:13px; color:var(--gray); cursor:pointer;">I confirm my referral is OK with being contacted by EzPzLease.</label>
+        </div>
+        <button class="btn-gold" style="width:100%; padding:16px; font-size:15px;">Send Referral →</button>
+        <p style="font-size:12px; color:var(--gray); text-align:center; margin-top:12px;">We never share your info or theirs.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <footer>
   <div class="footer-inner">
     <div>
